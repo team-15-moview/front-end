@@ -1,12 +1,17 @@
-import HomeBanner from "../components/home/HomeBanner";
-import { LayoutMargin } from "../styles/common";
+import BannerSlider from "../components/home/BannerSlider";
+import MovieSlider from "../components/home/MovieSlider";
+import { MovieSliderBox } from "../components/home/homeStyle";
 
 function Home() {
   return (
-    <LayoutMargin>
-      <HomeBanner />
-      <main>메인공간</main>
-    </LayoutMargin>
+    <>
+      <BannerSlider />
+      <MovieSliderBox>
+        <MovieSlider>7월에 개봉한 영화</MovieSlider>
+        <MovieSlider>액션 영화</MovieSlider>
+        <MovieSlider>공포 영화</MovieSlider>
+      </MovieSliderBox>
+    </>
   );
 }
 

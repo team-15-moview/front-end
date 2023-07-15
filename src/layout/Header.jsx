@@ -1,4 +1,4 @@
-import { HeaderWrapper, StyledHeader, HeaderNav } from "./style";
+import { HeaderWrapper, StyledHeader, HeaderNav } from "./layoutStyle";
 
 function Header() {
   return (
