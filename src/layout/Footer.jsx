@@ -1,8 +1,11 @@
+import { StyledFooter } from "./style";
 
 function Footer() {
   return (
-    <div>Footer</div>
-  )
+    <StyledFooter>
+      <div>Footer</div>
+    </StyledFooter>
+  );
 }
 
-export default Footer
+export default Footer;

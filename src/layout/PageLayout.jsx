@@ -1,18 +1,15 @@
-import { Outlet } from "react-router-dom"
-import Footer from "./Footer"
-import Header from "./Header"
-import { StyledLayout } from "./style"
+import { Outlet } from "react-router-dom";
+import Footer from "./Footer";
+import Header from "./Header";
 
 function PageLayout() {
   return (
     <>
-      <Header/>
-        <StyledLayout>
-          <Outlet/>
-        </StyledLayout>
-      <Footer/>
+      <Header />
+      <Outlet />
+      <Footer />
     </>
-  )
+  );
 }
 
-export default PageLayout
+export default PageLayout;
