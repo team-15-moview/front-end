@@ -1,14 +1,14 @@
-import { HeaderWrapper, StyledHeader, ButtonsWrapper } from "./style";
+import { HeaderWrapper, StyledHeader, HeaderNav } from "./style";
 
 function Header() {
   return (
     <StyledHeader>
       <HeaderWrapper>
         <div className="logo">Moview</div>
-        <ButtonsWrapper>
+        <HeaderNav>
           <button>로그인</button>
           <button>회원가입</button>
-        </ButtonsWrapper>
+        </HeaderNav>
       </HeaderWrapper>
     </StyledHeader>
   );

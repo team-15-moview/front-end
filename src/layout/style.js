@@ -1,10 +1,5 @@
 import { styled } from "styled-components";
 
-export const StyledLayout = styled.main`
-  margin: 0px auto;
-  max-width: 1320px;
-`;
-
 export const StyledHeader = styled.header`
   background: beige;
   height: 40px;
@@ -19,7 +14,7 @@ export const HeaderWrapper = styled.div`
   width: 1320px;
 `;
 
-export const ButtonsWrapper = styled.div`
+export const HeaderNav = styled.nav`
   display: flex;
   gap: 30px;
 `;
