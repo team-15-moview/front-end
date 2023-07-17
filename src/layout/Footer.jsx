@@ -1,10 +1,12 @@
-import { StyledFooter } from "./style";
+import { LayoutMargin } from "../styles/commonStyle";
 
 function Footer() {
   return (
-    <StyledFooter>
-      <div>Footer</div>
-    </StyledFooter>
+    <footer>
+      <LayoutMargin>
+        <div>Footer</div>
+      </LayoutMargin>
+    </footer>
   );
 }
 
