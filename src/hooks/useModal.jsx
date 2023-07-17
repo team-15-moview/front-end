@@ -56,7 +56,7 @@ const useModal = (coverExist = true, exitByOuterClick = true) => {
   };
 
   return [
-    isOpen ? ModalTemplate : () => <></>,
+    isOpen?ModalTemplate:()=><></>,
     openModal,
     closeModal,
     openerRef,

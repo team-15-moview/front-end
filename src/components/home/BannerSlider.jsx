@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { StyleSheetManager } from "styled-components";
 import { BannerSliderBox } from "./homeStyle";
 import { LeftIcon, RightIcon } from "../../styles/commonStyle";
@@ -9,9 +9,11 @@ import { ReactComponent as Left } from "../../assets/icons/left.svg";
 import { ReactComponent as Right } from "../../assets/icons/right.svg";
 
 import BannerCard from "./BannerCard";
+import { useQuery } from "react-query";
+import { getTopFiveMovies } from "../../api/movie";
 
 export default function BannerSlider() {
-  const top5Movies = [
+  const [top5Movies, setTop5Movies] = useState([
     {
       movie_id: 1,
       title: "하울의 움직이는 성",
@@ -62,7 +64,12 @@ export default function BannerSlider() {
         },
       ],
     },
-  ];
+  ]);
+  const {data, isSuccess} = useQuery("top5Movies", getTopFiveMovies);
+  if(isSuccess){
+    setTop5Movies(data);
+  }
+  
 
   // Props 에러 방지
   const shouldForwardProp = (prop) =>

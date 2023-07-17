@@ -1,10 +1,14 @@
+import { useQuery } from "react-query";
 import MovieInfo from "../components/movie/MovieInfo";
 import Reviews from "../components/movie/Reviews";
 import StillBackground from "../components/movie/StillBackground";
 import { LayoutMargin } from "../styles/commonStyle";
+import { getMoviebyIdP } from "../api/movie";
+import { useMovieId } from "../hooks/usePageParam";
+import { useState } from "react";
 
 function Movie() {
-  const movie = {
+  const [movie, setMovie] = useState({
     movie_id: 1,
     title: "하울의 움직이는 성",
     open_date: "2004",
@@ -16,7 +20,13 @@ function Movie() {
       "https://file3.instiz.net/data/file3/2020/10/30/c/2/3/c23e9cee7f2d6a145b509bc94493a6f6.jpg",
     rate: "9.35",
     star: 10,
-  };
+  });
+
+  const { data, isSuccess } = useQuery("movie", getMoviebyIdP(useMovieId()));
+
+  if (isSuccess) {
+    setMovie(data);
+  }
 
   return (
     <>
