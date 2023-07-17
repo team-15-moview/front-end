@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import {
   MovieSliderH1,
   MovieSliderBox,
@@ -14,9 +14,11 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import { ReactComponent as Left } from "../../assets/icons/left.svg";
 import { ReactComponent as Right } from "../../assets/icons/right.svg";
+import { useQuery } from "react-query";
+import { getMoviesbyJenreP } from "../../api/movie";
 
-export default function MovieSlider({ children }) {
-  const ActionGenreMovies = [
+export default function MovieSlider({ children , genre}) {
+  const [Movies, setMovies] = useState([
     {
       movie_id: 1,
       title: "하울의 움직이는 성",
@@ -83,7 +85,13 @@ export default function MovieSlider({ children }) {
       still: "link",
       rate: "9.35",
     },
-  ];
+  ])
+
+  const {data, isSuccess} = useQuery("genreMovies",getMoviesbyJenreP(genre));
+
+  if(isSuccess){
+    setMovies(data);
+  }
 
   // Props 에러 방지
   const shouldForwardProp = (prop) =>
@@ -113,7 +121,7 @@ export default function MovieSlider({ children }) {
       <MovieSliderH1>{children}</MovieSliderH1>
       <StyleSheetManager shouldForwardProp={shouldForwardProp}>
         <MovieSliderBox {...settings}>
-          {ActionGenreMovies.map((movie) => (
+          {Movies.map((movie) => (
             <MovieCard key={movie.movie_id} movie={movie} />
           ))}
         </MovieSliderBox>

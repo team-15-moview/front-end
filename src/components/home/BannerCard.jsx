@@ -8,12 +8,14 @@ import {
 import ReviewBox from "./../common/ReviewBox";
 
 import { renderStars } from "./hooks/renderStar";
+import { useNavigate } from "react-router";
 
-export default function BannerCard({ movie }) {
+export default function BannerCard({ movie, onClick }) {
+  const navigate = useNavigate();
   return (
     <BannerCardItem>
       <BannerCardFigure>
-        <img src={movie.still} alt="스틸컷" />
+        <img src={movie.still} alt="스틸컷" onClick={()=>navigate(`/movies/${movie.movie_id}`)}/>
         <BannerCardFicaption>
           <p className="movie_title">{movie.title}</p>
           <p className="movie_id">{movie.movie_id}</p>
