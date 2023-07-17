@@ -1,6 +1,6 @@
-import { ReactComponent as EmptyStar } from "../../../assets/icons/stars/emptyStar.svg";
-import { ReactComponent as HalfStar } from "../../../assets/icons/stars/halfStar.svg";
-import { ReactComponent as FillStar } from "../../../assets/icons/stars/fillStar.svg";
+import { ReactComponent as EmptyStar } from "../assets/icons/stars/emptyStar.svg";
+import { ReactComponent as HalfStar } from "../assets/icons/stars/halfStar.svg";
+import { ReactComponent as FillStar } from "../assets/icons/stars/fillStar.svg";
 
 export const renderStars = (rate) => {
   const movieRate = +rate;

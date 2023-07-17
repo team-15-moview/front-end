@@ -7,7 +7,7 @@ import {
 } from "./homeStyle";
 import ReviewBox from "./../common/ReviewBox";
 
-import { renderStars } from "./hooks/renderStar";
+import { renderStars } from "../../utils/renderStar";
 
 export default function BannerCard({ movie }) {
   return (
