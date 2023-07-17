@@ -44,9 +44,6 @@ const useModal = (coverExist = true, exitByOuterClick = true) => {
       };
     },  [])
 
-    if(!isOpen)
-      return <></>
-
     return (coverExist ?
       <ViewportCover>
         <div ref={modalRef}>
@@ -61,7 +58,7 @@ const useModal = (coverExist = true, exitByOuterClick = true) => {
   }
 
   return [
-    ModalTemplate,
+    isOpen?ModalTemplate:()=><></>,
     openModal,
     closeModal,
     openerRef

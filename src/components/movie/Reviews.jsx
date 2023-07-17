@@ -9,7 +9,7 @@ function Reviews() {
       "content": "최고의 영화!",
       "likes_count": 437,
       "comments_count": 3,
-      "rate": 10
+      "star": 10
     },
     {
       "review_id": 2,
@@ -17,7 +17,7 @@ function Reviews() {
       "content": "최고의 영화!",
       "likes_count": 437,
       "comments_count": 3,
-      "rate": 10
+      "star": 10
     },
     {
       "review_id": 3,
@@ -25,14 +25,14 @@ function Reviews() {
       "content": "최고의 영화!",
       "likes_count": 437,
       "comments_count": 3,
-      "rate": 10
+      "star": 10
     }
   ]
   return (
     <ReviewSection>
       <Heading>리뷰</Heading>
       <ReviewListContainer>
-        {reviewList.map((review)=><Review {...review}/>)}
+        {reviewList.map((review)=><Review review={review}/>)}
       </ReviewListContainer>
     </ReviewSection>
   )

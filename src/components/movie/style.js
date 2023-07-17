@@ -50,20 +50,23 @@ export const TextInfo = styled.div`
 `
 
 export const ReviewSection = styled.section`
-  margin: 60px 0px;
+  margin: 0px 0px;
+  position: relative;
+  top: -200px;
 `
 export const Heading = styled.h1`
   font-size: 45px;
   font-weight: bold;
 `
 export const ReviewListContainer = styled.div`
-  padding: 25px 0px;
+  margin: 25px auto;
+  width: 1126px;
   display: flex;
   flex-flow: row wrap;
-  justify-content: center;
   gap: 10px;
 `
 export const ReviewContainer = styled.div`
-  width: 558px 104px;
-  background-color: aliceblue;
+  width: 558px ;
+  height: 104px;
+  margin-bottom: 20px;
 `
