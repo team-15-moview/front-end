@@ -1,7 +1,7 @@
 import MovieInfo from "../components/movie/MovieInfo"
 import Reviews from "../components/movie/Reviews"
 import StillBackground from "../components/movie/StillBackground"
-import { LayoutMargin } from "../styles/common"
+import { LayoutMargin } from "../styles/commonStyle"
 
 function Movie() {
   const movie={

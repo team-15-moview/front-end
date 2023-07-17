@@ -1,8 +1,11 @@
+import ReviewBox from "../common/ReviewBox"
 import { ReviewContainer } from "./style";
 
-function Review({review_id, nickname, content, likes_count, comments_count, rate}) {
+function Review({review}) {
   return (
-    <ReviewContainer/>
+    <ReviewContainer>
+      <ReviewBox review={review}/>
+    </ReviewContainer>
   )
 }
 
