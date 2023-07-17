@@ -91,6 +91,10 @@ export const StyledButton = styled.button`
   padding: 5px 10px;
   cursor: pointer;
   transition: background-color 0.3s ease;
+  border: none;
+`;
+
+export const HeaderButton = styled(StyledButton)`
   color: ${({ isScrolled }) => (isScrolled ? "white" : "black")};
   background: ${({ isScrolled }) => (isScrolled ? "#6528F7" : "none")};
   border: ${({ isScrolled, color }) =>

@@ -1,8 +1,12 @@
 import React, { useState, useEffect, useRef } from "react";
 import { HeaderWrapper, StyledHeader, HeaderNav } from "./layoutStyle";
 
-import Button from "../components/common/Button";
 import { StyleSheetManager } from "styled-components";
+import { Link } from "react-router-dom";
+import useModal from "../hooks/useModal";
+import { HeaderButton } from "../styles/commonStyle";
+import LoginModal from "../components/modals/LoginModal";
+import EmailSigninModal from "../components/modals/EmailSigninModal";
 
 function Header() {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -24,14 +28,38 @@ function Header() {
   // Props 에러 방지
   const shouldForwardProp = (prop) => prop !== "isScrolled";
 
+  const [Modal, openModal, closeModal, openerRef] = useModal();
+  const [SigninModal, openSigninModal, closeSigninModal, openerSigninModalRef] =
+    useModal();
+
   return (
     <StyleSheetManager shouldForwardProp={shouldForwardProp}>
       <StyledHeader ref={headerRef} isScrolled={isScrolled}>
         <HeaderWrapper>
-          <div className="logo">Moview</div>
+          <Link to="/" className="logo">
+            Moview
+          </Link>
           <HeaderNav>
-            <Button color="white">로그인</Button>
-            <Button isScrolled={isScrolled}>회원가입</Button>
+            <HeaderButton onClick={openModal} ref={openerRef} color="white">
+              로그인
+            </HeaderButton>
+            {Modal && (
+              <Modal>
+                <LoginModal closeLogin={closeModal} />
+              </Modal>
+            )}
+            <HeaderButton
+              onClick={openSigninModal}
+              ref={openerSigninModalRef}
+              isScrolled={isScrolled}
+            >
+              회원가입
+            </HeaderButton>
+            {SigninModal && (
+              <SigninModal>
+                <EmailSigninModal closeSignin={closeSigninModal} />
+              </SigninModal>
+            )}
           </HeaderNav>
         </HeaderWrapper>
       </StyledHeader>

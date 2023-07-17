@@ -7,12 +7,12 @@ const ViewportCover = styled.div`
   left: 0;
   width: 100vw;
   height: 100vh;
-  background-color: rgb(221, 221, 221, 0.8);
+  background-color: #0000008f;
 
   display: flex;
   align-items: center;
   justify-content: center;
-`
+`;
 
 const useModal = (coverExist = true, exitByOuterClick = true) => {
   const openerRef = useRef();
@@ -21,48 +21,46 @@ const useModal = (coverExist = true, exitByOuterClick = true) => {
   const [isOpen, setIsOpen] = useState(false);
   const openModal = useCallback(() => {
     setIsOpen(true);
-  },[]);
+  }, []);
   const closeModal = useCallback(() => {
     setIsOpen(false);
-  },[]);
+  }, []);
 
-  
-  const ModalTemplate = ({children}) => {
+  const ModalTemplate = ({ children }) => {
     useEffect(() => {
       const outerOnClick = (event) => {
-        if (!modalRef.current.contains(event.target)&& !openerRef.current.contains(event.target))
+        if (
+          !modalRef.current.contains(event.target) &&
+          !openerRef.current.contains(event.target)
+        )
           closeModal();
       };
-  
-      if(exitByOuterClick){
-        document.addEventListener('click', outerOnClick);
-      }
-  
-      return () => {
-        if(exitByOuterClick)
-          document.removeEventListener('click', outerOnClick);
-      };
-    },  [])
 
-    return (coverExist ?
+      if (exitByOuterClick) {
+        document.addEventListener("click", outerOnClick);
+      }
+
+      return () => {
+        if (exitByOuterClick)
+          document.removeEventListener("click", outerOnClick);
+      };
+    }, []);
+
+    return coverExist ? (
       <ViewportCover>
-        <div ref={modalRef}>
-          {children}
-        </div>
+        <div ref={modalRef}>{children}</div>
       </ViewportCover>
-      :
-      <div ref={modalRef}>
-        {children}
-      </div>
-      );
-  }
+    ) : (
+      <div ref={modalRef}>{children}</div>
+    );
+  };
 
   return [
     isOpen?ModalTemplate:()=><></>,
     openModal,
     closeModal,
-    openerRef
-  ]
-} 
+    openerRef,
+  ];
+};
 
 export default useModal;
