@@ -7,7 +7,12 @@ export const StyledHeader = styled.header`
   display: flex;
   justify-content: center;
   align-items: center;
-  z-index: 2;
+  z-index: 20;
+  transition: background-color 0.5s ease;
+  background-color: ${({ isScrolled }) =>
+    isScrolled ? "white" : "transparent"};
+  box-shadow: ${({ isScrolled }) =>
+    isScrolled ? "0px 2px 4px rgba(0, 0, 0, 0.1)" : "none"};
 `;
 
 export const HeaderWrapper = styled.div`
@@ -25,5 +30,5 @@ export const HeaderWrapper = styled.div`
 
 export const HeaderNav = styled.nav`
   display: flex;
-  gap: 30px;
+  gap: 20px;
 `;

@@ -3,6 +3,8 @@ import { createGlobalStyle } from "styled-components";
 const GlobalStyle = createGlobalStyle`
     body{
         overflow-x: hidden;
+
+        --main-Color : #6528F7;
     }
 
     .slick-prev::before,

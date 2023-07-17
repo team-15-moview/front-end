@@ -20,7 +20,7 @@ export const RightIcon = styled.div`
   height: 30px;
   position: absolute;
   right: 16px;
-  z-index: 99;
+  z-index: 1;
   text-align: right;
 `;
 
@@ -29,7 +29,7 @@ export const LeftIcon = styled.div`
   height: 30px;
   position: absolute;
   left: 16px;
-  z-index: 99;
+  z-index: 1;
   text-align: left;
 `;
 
@@ -58,6 +58,11 @@ export const UserReview = styled.div`
   width: 100%;
   display: flex;
   justify-content: space-between;
+
+  & p {
+    display: flex;
+    align-items: center;
+  }
 `;
 
 export const StyledLikeReply = styled.div`
@@ -79,4 +84,15 @@ export const StyledLikeReply = styled.div`
   & svg:hover {
     opacity: 1;
   }
+`;
+
+export const StyledButton = styled.button`
+  border-radius: 5px;
+  padding: 5px 10px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  color: ${({ isScrolled }) => (isScrolled ? "white" : "black")};
+  background: ${({ isScrolled }) => (isScrolled ? "#6528F7" : "none")};
+  border: ${({ isScrolled, color }) =>
+    isScrolled || color ? "1px solid transparent" : "1px solid black"};
 `;

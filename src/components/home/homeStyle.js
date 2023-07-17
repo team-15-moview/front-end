@@ -1,5 +1,6 @@
 import { styled } from "styled-components";
 import Slider from "react-slick";
+import { RightIcon, LeftIcon } from "../../styles/commonStyle";
 
 export const BannerSliderBox = styled(Slider)`
   .slick-prev::before,
@@ -62,29 +63,40 @@ export const BannerCardFicaption = styled.figcaption`
   }
 `;
 
+export const MovieSliderWarpper = styled.div`
+  margin: 50px 0;
+`;
+
 export const MovieSliderH1 = styled.h1`
   font-size: 30px;
   font-weight: 700;
   padding: 20px;
 `;
 
-export const MovieSliderBox = styled.main`
-  margin: 30px;
+export const MovieSliderBox = styled(BannerSliderBox)`
+  margin: 20px;
 `;
 
-export const MovieSliderList = styled.ul`
-  display: flex;
-  padding: 10px;
-  gap: 30px;
-
-  & img {
-    width: 200px;
-  }
+export const MovieRightIcon = styled(RightIcon)`
+  right: -40px;
+  top: 160px;
+  z-index: 1;
 `;
 
-export const MovieSliderItem = styled.li`
+export const MovieLeftIcon = styled(LeftIcon)`
+  left: -40px;
+  top: 160px;
+  z-index: 1;
+`;
+
+export const MovieSliderItem = styled.div`
+  padding: 20px;
   display: flex;
   flex-direction: column;
+
+  & img {
+    /* width: 220px; */
+  }
 
   & figcaption {
     padding: 10px 0;
