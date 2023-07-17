@@ -7,7 +7,7 @@ import {
 } from "./homeStyle";
 import ReviewBox from "./../common/ReviewBox";
 
-import { renderStars } from "./hooks/renderStar";
+import { renderStars } from "../../utils/renderStar";
 import { useNavigate } from "react-router";
 
 export default function BannerCard({ movie, onClick }) {

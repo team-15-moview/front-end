@@ -74,7 +74,6 @@ export const MovieSliderH1 = styled.h1`
 `;
 
 export const MovieSliderBox = styled(BannerSliderBox)`
-  margin: 20px;
 `;
 
 export const MovieRightIcon = styled(RightIcon)`
