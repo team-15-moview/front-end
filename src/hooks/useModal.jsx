@@ -1,24 +1,6 @@
 import { useCallback, useEffect, useRef, useState } from "react";
 import { styled } from "styled-components";
 
-const ModalTemplate = ({coverExist, isOpen, modalRef}) => ({children}) => {
-
-  if(!isOpen)
-    return <></>
-
-  return (coverExist ?
-    <ViewportCover>
-      <div ref={modalRef}>
-        {children}
-      </div>
-    </ViewportCover>
-    :
-    <div ref={modalRef}>
-      {children}
-    </div>
-    );
-}
-
 const ViewportCover = styled.div`
   position: fixed;
   top: 0;
@@ -44,24 +26,42 @@ const useModal = (coverExist = true, exitByOuterClick = true) => {
     setIsOpen(false);
   },[]);
 
-  useEffect(() => {
-    const outerOnClick = (event) => {
-      if (!modalRef.current.contains(event.target)&& !openerRef.current.contains(event.target))
-        closeModal();
-    };
-
-    if(exitByOuterClick){
-      document.addEventListener('click', outerOnClick);
-    }
-
-    return () => {
-      if(exitByOuterClick)
-        document.removeEventListener('click', outerOnClick);
-    };
-  },  [exitByOuterClick, closeModal, openerRef])
   
+  const ModalTemplate = ({children}) => {
+    useEffect(() => {
+      const outerOnClick = (event) => {
+        if (!modalRef.current.contains(event.target)&& !openerRef.current.contains(event.target))
+          closeModal();
+      };
+  
+      if(exitByOuterClick){
+        document.addEventListener('click', outerOnClick);
+      }
+  
+      return () => {
+        if(exitByOuterClick)
+          document.removeEventListener('click', outerOnClick);
+      };
+    },  [])
+
+    if(!isOpen)
+      return <></>
+
+    return (coverExist ?
+      <ViewportCover>
+        <div ref={modalRef}>
+          {children}
+        </div>
+      </ViewportCover>
+      :
+      <div ref={modalRef}>
+        {children}
+      </div>
+      );
+  }
+
   return [
-    ModalTemplate({ coverExist, isOpen, modalRef}),
+    ModalTemplate,
     openModal,
     closeModal,
     openerRef
