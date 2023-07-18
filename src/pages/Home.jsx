@@ -9,7 +9,7 @@ function Home() {
       <MovieSliderWarpper>
         <MovieSlider genre='애니메이션'>애니메이션</MovieSlider>
         <MovieSlider  genre='액션'>액션 영화</MovieSlider>
-        <MovieSlider genre='공포'>공포 영화</MovieSlider>
+        <MovieSlider genre='범죄'>범죄 영화</MovieSlider>
       </MovieSliderWarpper>
     </>
   );

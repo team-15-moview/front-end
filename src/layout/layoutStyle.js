@@ -23,7 +23,7 @@ export const HeaderWrapper = styled.div`
 `;
 
 export const LogoBox = styled.div`
-  
+  cursor: pointer;
   display: flex;
   align-items: center;
 `
