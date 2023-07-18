@@ -6,8 +6,7 @@ export const StillContainer = styled.section`
   position: relative;
   top: -35px;
   width: 100%;
-  height: 540px;
-  z-index: -1;
+  height: 850px;
   overflow: hidden;
 `
 export const StillImg = styled.section`
@@ -82,31 +81,11 @@ export const LeftHalfBox = styled.div`
   display: flex;
   justify-content: flex-end;
   align-items: center;
-  width: 40px;
+  width: 45px;
 `
 export const RightHalfBox = styled.div`
   flex-grow: 1;
   display: flex;
   align-items: center;
-  width: 40px;
-`
-export const CheckedLeft = styled.div`
-  background-color: yellow;
-  width:35px;
-  height: 62px;
-`
-export const CheckedRight = styled.div`
-  background-color: yellow;
-  width:35px;
-  height: 62px;
-`
-export const UnCheckedLeft = styled.div`
-  background-color: grey;
-  width:35px;
-  height: 62px;
-`
-export const UnCheckedRight = styled.div`
-  background-color: grey;
-  width:35px;
-  height: 62px;
+  width: 45px;
 `

@@ -51,9 +51,12 @@ export const WriteCard = styled.div`
   background-color: white;
   padding: 27px;
   display: flex;
+  flex-flow: column wrap;
+  gap: 10px;
 
   & .header{
-    
+    display: flex;
+    justify-content: space-between;
   }
   & .title{
     margin: 3px 9px;
@@ -61,11 +64,35 @@ export const WriteCard = styled.div`
     font-size: 32px;
     font-weight: bold;
   }
-
+  & .closeButton{
+    cursor: pointer;
+  }
   & .textbox{
     margin: 14px 9px;
     flex-grow: 1;
+    border: none;
+    display: block;
+    font-size:20px;
   }
+  & .submitContainer{
+    display: flex;
+    flex-flow: row-reverse wrap;
+    align-items: center;
+  }
+  & .submit{
+    cursor: pointer;
+    font-size: 32px;
+    font-weight: bold;
+    color: white;
+    text-align: center;
+    width: 188px;
+    height: 68px;
+    border: none;
+    border-radius: 10px;
+    background: rgb(101,40,247);
+
+  }
+
 `
 
 export const ModalButton = styled(StyledButton)`
@@ -75,3 +102,8 @@ export const ModalButton = styled(StyledButton)`
   background: ${({ bg }) => bg};
   border: ${({ border }) => `1px solid ${border}`};
 `;
+
+export const SubmitButton = styled.button`
+  
+  border: ${({ border }) => `1px solid ${border}`}
+`

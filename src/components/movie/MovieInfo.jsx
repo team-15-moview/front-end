@@ -13,7 +13,7 @@ function MovieInfo({movie_id, title, open_date, director, genre, thumbnail, rate
             <div>{genre}</div>
             <div>{director}</div>
           </TextInfo>
-          <UserStar max={5} userStar={star}/>
+          <UserStar max={5} userStar={star} title={title} movie_id={movie_id}/>
         </PubInfoContainer>
       </TextInfoContainer>
     </MovieInfoContainer>

@@ -7,10 +7,12 @@ import {
   UserReview,
 } from "../../styles/commonStyle";
 import LikeReply from "./LikeReply";
+import { useNavigate } from "react-router-dom";
 
 export default function ReviewBox({ review }) {
+  const navigate = useNavigate();
   return (
-    <StyledReviewBox>
+    <StyledReviewBox onClick={()=>navigate(`reviews/${review.review_id}`)}>
       <ReviewBoxRow>
         <UserProfile>
           <figure>

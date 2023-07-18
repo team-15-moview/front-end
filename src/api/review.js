@@ -1,16 +1,16 @@
 import ourAxios from "./ourAxios"
 import { deleteWithToken, postWithToken, putWithToken } from "./user";
 
-export const postReview = async ({movieId, content, star} ) => {
-  await postWithToken(`api/movies/${movieId}/reviews`, {content, star});
+export const postReview = async ({movie_id, content, star} ) => {
+  await postWithToken(`api/reviews`, {movie_id, content, star});
 }
 
-export const putReview = async ({movieId, reviewId, content, star}) => {
-  await putWithToken(`api/movies/${movieId}/reviews/${reviewId}`, {content, star});
+export const putReview = async ({reviewId, content, star}) => {
+  await putWithToken(`api/reviews/${reviewId}`, {content, star});
 }
 
-export const deleteReview = async ({movieId, reviewId}) => {
-  await deleteWithToken(`api/movies/${movieId}/reviews/${reviewId}`);
+export const deleteReview = async ({reviewId}) => {
+  await deleteWithToken(`api/reviews/${reviewId}`);
 }
 
 export const getReviewsP = (movieId,lastReviewId) => async () => {

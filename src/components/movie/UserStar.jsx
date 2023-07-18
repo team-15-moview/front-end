@@ -1,10 +1,12 @@
 import { useState } from "react";
-import { CheckedLeft, CheckedRight, LeftHalfBox, RightHalfBox, StarsContainer, UnCheckedLeft, UnCheckedRight } from "./movieStyle";
+import { LeftHalfBox, RightHalfBox, StarsContainer } from "./movieStyle";
+import { ReactComponent as LeftHalf } from "../../assets/icons/stars/leftStar.svg";
+import { ReactComponent as RightHalf } from "../../assets/icons/stars/rightStar.svg";
 import useModal from '../../hooks/useModal'
-import WriteCardModal from "../modals/WriteCardModal";
+import WriteReviewModal from "../modals/WriteReviewModal";
 
 
-function UserStar({ max, userStar }) {
+function UserStar({ max, userStar, title, movie_id}) {
   const [Modal, openModal, closeModal, openerRef] = useModal();
   const [star, setStar] = useState(userStar);
   const [isHovered, setHovered] = useState(false);
@@ -37,14 +39,14 @@ function UserStar({ max, userStar }) {
             if (currentStarValue % 2) {
               return (
                 <LeftHalfBox onMouseEnter={onHoverStarHandler(currentStarValue / 2)} onClick={onClickStarHandler(currentStarValue / 2)} key={index}>
-                  {currentStarValue <= starValue ? <CheckedLeft /> : <UnCheckedLeft />}
+                  {currentStarValue <= starValue ? <LeftHalf fill='gold'/> : <LeftHalf fill='grey' />}
                 </LeftHalfBox>
               );
             }
             else {
               return (
                 <RightHalfBox onMouseEnter={onHoverStarHandler(currentStarValue / 2)} onClick={onClickStarHandler(currentStarValue / 2)} key={index}>
-                  {currentStarValue <= starValue ? <CheckedRight /> : <UnCheckedRight />}
+                  {currentStarValue <= starValue ? <RightHalf fill='gold'/> : <RightHalf fill='grey' />}
                 </RightHalfBox>
               );
             }
@@ -52,7 +54,7 @@ function UserStar({ max, userStar }) {
         }
       </StarsContainer>
       <Modal>
-        <WriteCardModal/>
+        <WriteReviewModal title={title} movieId={movie_id} star={star} closeModal={closeModal}/>
       </Modal>
     </>
 

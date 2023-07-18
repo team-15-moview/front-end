@@ -20,14 +20,13 @@ export const HeaderWrapper = styled.div`
   display: flex;
   justify-content: space-between;
   width: 1320px;
-
-  & .logo {
-    font-size: 20px;
-    font-weight: 700;
-    display: flex;
-    align-items: center;
-  }
 `;
+
+export const LogoBox = styled.div`
+  
+  display: flex;
+  align-items: center;
+`
 
 export const HeaderNav = styled.nav`
   display: flex;

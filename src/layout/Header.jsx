@@ -1,14 +1,17 @@
 import React, { useState, useEffect, useRef } from "react";
-import { HeaderWrapper, StyledHeader, HeaderNav } from "./layoutStyle";
+import { HeaderWrapper, StyledHeader, HeaderNav, LogoBox } from "./layoutStyle";
+import {ReactComponent as WhiteLogo} from "../assets/icons/logoWhite.svg"
+import {ReactComponent as BlackLogo} from "../assets/icons/logoBlack.svg"
 
 import { StyleSheetManager } from "styled-components";
-import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import useModal from "../hooks/useModal";
 import { HeaderButton } from "./layoutStyle";
 import LoginModal from "../components/modals/LoginModal";
 import EmailSigninModal from "../components/modals/EmailSigninModal";
 
 function Header() {
+  const navigate = useNavigate();
   const [isScrolled, setIsScrolled] = useState(false);
   const headerRef = useRef(null);
 
@@ -36,9 +39,9 @@ function Header() {
     <StyleSheetManager shouldForwardProp={shouldForwardProp}>
       <StyledHeader ref={headerRef} isScrolled={isScrolled}>
         <HeaderWrapper>
-          <Link to="/" className="logo">
-            Moview
-          </Link>
+          <LogoBox onClick={()=>navigate("/")} >
+            {isScrolled? <BlackLogo/> : <WhiteLogo/>}
+          </LogoBox>
           <HeaderNav>
             <HeaderButton onClick={openModal} ref={openerRef} color="white">
               로그인
