@@ -1,8 +1,15 @@
 import React, { useState } from "react";
 import { ModalButton, ModalWrapper } from "./modalStyle";
 import EmailSigninModal from "./EmailSigninModal";
+import { useMutation } from "react-query";
+import { login } from "../../api/user";
 
 export default function EmailLoginModal({ closeLogin }) {
+  const mutation = useMutation(login,{
+    onSuccess:()=>{
+      //로그인 리덕스 on
+    }
+  });
   const [showSignup, setShowSignup] = useState(false);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -17,6 +24,7 @@ export default function EmailLoginModal({ closeLogin }) {
     console.log("Email:", email);
     console.log("Password:", password);
     // ...additional login logic
+    mutation.mutate({email,password});
   };
 
   return (

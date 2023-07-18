@@ -9,7 +9,8 @@ export const postWithToken = async (path, data) => {
     headers:{
       'Content-Type' : 'application/json',
       Authorization : `${accessToken}`
-    }
+    },
+    withCredentials:true
   })
   return response;
 }
@@ -20,7 +21,8 @@ export const getWithToken = async (path) => {
     headers:{
       'Content-Type' : 'application/json',
       Authorization : `${accessToken}`
-    }
+    },
+    withCredentials:true
   })
 
   return response;
@@ -32,7 +34,8 @@ export const deleteWithToken = async (path) => {
     headers:{
       'Content-Type' : 'application/json',
       Authorization : `${accessToken}`
-    }
+    },
+    withCredentials:true
   })
 
   return response;
@@ -44,7 +47,8 @@ export const putWithToken = async (path, data) => {
     headers:{
       'Content-Type' : 'application/json',
       Authorization : `${accessToken}`
-    }
+    },
+    withCredentials:true
   })
 
   return response;
