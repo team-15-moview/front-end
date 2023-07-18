@@ -19,7 +19,7 @@ import { getMoviesbyJenreP } from "../../api/movie";
 
 export default function MovieSlider({ children , genre}) {
 
-  const {data, isLoading} = useQuery("genreMovies",getMoviesbyJenreP(genre));
+  const {data, isLoading} = useQuery(`${genre}Movies`,getMoviesbyJenreP(genre));
 
   if(isLoading){
     return <></>
