@@ -4,17 +4,30 @@ import LikeReply from "../components/common/LikeReply";
 import * as styled from "./../components/Review/reviewStyle";
 import { getReviewByIdP } from "../api/review";
 import { useReviewId } from "../hooks/usePageParam";
-import Loading from "../components/common/Loading";
 import { ReactComponent as Like } from "../assets/icons/like.svg";
 import { ReactComponent as Reply } from "../assets/icons/reply.svg";
 import useModal from "../hooks/useModal";
 import ReviewAddModal from "../components/modals/ReplyAddModal";
+import ReviewSkeleton from "../components/Review/ReviewSkeleton";
 
 export default function Review() {
   const [Modal, openModal, closeModal, openerRef] = useModal();
-  // const defaultReview = [{
 
-  // }]
+  const defaultReview = {
+    author: "test1",
+    review_id: 1,
+    content: "최고의 영화!",
+    likes_count: 1,
+    star: 10.0,
+    like_by_user: false,
+    movie: {
+      title: "미션 임파서블: 데드 레코닝 PART ONE",
+      open_date: "2023-07-12",
+      director: "크리스토퍼 맥쿼리",
+      thumbnail:
+        "https://t1.daumcdn.net/movie/0d12852246b3471b3afa871a539bb0b2a0b7ed2b",
+    },
+  };
 
   const { data, isLoading, error } = useQuery(
     "review",
@@ -22,17 +35,17 @@ export default function Review() {
   );
 
   if (isLoading) {
-    return <Loading />;
+    return <ReviewSkeleton />;
   }
+
+  let review = data ? data.data : defaultReview;
+  let reviewedmovie = data ? data.data.movie : defaultReview;
 
   if (error) {
-    return <div>Error: {error.message}</div>;
+    review = defaultReview;
+    reviewedmovie = defaultReview.movie;
+    console.log(error.message);
   }
-
-  // const review = data ? data.data : defaultReview;
-  // const reviewedmovie = data ? defaultReview;
-
-  console.log(review);
 
   return (
     <>

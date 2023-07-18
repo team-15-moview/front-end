@@ -8,7 +8,7 @@ const GlobalStyle = createGlobalStyle`
         --bg-Color: #ffffff;
 
         overflow-x: hidden;
-        background: #ffffff;
+        background: var(--bg-Color);
         color: var(--font-Color);
     }
 
