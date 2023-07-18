@@ -43,6 +43,31 @@ export const ModalWrapper = styled.div`
   }
 `;
 
+export const WriteCard = styled.div`
+  width: 594px;
+  height: 687px;
+  box-shadow: 3px 3px 5px 5px grey;
+  border-radius: 20px;
+  background-color: white;
+  padding: 27px;
+  display: flex;
+
+  & .header{
+    
+  }
+  & .title{
+    margin: 3px 9px;
+    text-align: center;
+    font-size: 32px;
+    font-weight: bold;
+  }
+
+  & .textbox{
+    margin: 14px 9px;
+    flex-grow: 1;
+  }
+`
+
 export const ModalButton = styled(StyledButton)`
   border-radius: 10px;
   width: 300px;

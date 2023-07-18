@@ -1,5 +1,5 @@
 import React from 'react'
-import { StillContainer } from './style'
+import { StillContainer } from './movieStyle'
 
 function StillBackground({src}) {
   return (

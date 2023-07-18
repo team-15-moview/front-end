@@ -39,8 +39,10 @@ export const TitleBox = styled.div`
   color: white;
 `
 export const PubInfoContainer = styled.div`
+  display: flex;
   margin: 20px 40px;
   justify-content: space-between;
+  align-items: center;
   font-size: 23px;
 `
 export const TextInfo = styled.div`
@@ -69,4 +71,42 @@ export const ReviewContainer = styled.div`
   width: 558px ;
   height: 104px;
   margin-bottom: 20px;
+`
+
+export const StarsContainer = styled.div`
+  display: flex;
+  height: 62px ;
+`
+export const LeftHalfBox = styled.div`
+  flex-grow: 1;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  width: 40px;
+`
+export const RightHalfBox = styled.div`
+  flex-grow: 1;
+  display: flex;
+  align-items: center;
+  width: 40px;
+`
+export const CheckedLeft = styled.div`
+  background-color: yellow;
+  width:35px;
+  height: 62px;
+`
+export const CheckedRight = styled.div`
+  background-color: yellow;
+  width:35px;
+  height: 62px;
+`
+export const UnCheckedLeft = styled.div`
+  background-color: grey;
+  width:35px;
+  height: 62px;
+`
+export const UnCheckedRight = styled.div`
+  background-color: grey;
+  width:35px;
+  height: 62px;
 `

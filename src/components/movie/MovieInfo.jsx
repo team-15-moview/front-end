@@ -1,4 +1,5 @@
-import { MovieInfoContainer, PosterBox, PubInfoContainer, TextInfo, TextInfoContainer, TitleBox } from "./style";
+import UserStar from "./UserStar";
+import { MovieInfoContainer, PosterBox, PubInfoContainer, TextInfo, TextInfoContainer, TitleBox } from "./movieStyle";
 
 function MovieInfo({movie_id, title, open_date, director, genre, thumbnail, rate, star}) {
   return (
@@ -12,7 +13,7 @@ function MovieInfo({movie_id, title, open_date, director, genre, thumbnail, rate
             <div>{genre}</div>
             <div>{director}</div>
           </TextInfo>
-  
+          <UserStar max={5} userStar={star}/>
         </PubInfoContainer>
       </TextInfoContainer>
     </MovieInfoContainer>

@@ -1,5 +1,5 @@
 import ReviewBox from "../common/ReviewBox"
-import { ReviewContainer } from "./style";
+import { ReviewContainer } from "./movieStyle";
 
 function Review({review}) {
   return (
