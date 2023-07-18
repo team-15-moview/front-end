@@ -13,13 +13,12 @@ import { useQuery } from "react-query";
 import { getTopFiveMovies } from "../../api/movie";
 
 export default function BannerSlider() {
-  
-  const {data, isLoading} = useQuery("top5Movies", getTopFiveMovies);
-  if(isLoading){
-    return <></>
+  const { data, isLoading } = useQuery("top5Movies", getTopFiveMovies);
+  if (isLoading) {
+    return <></>;
   }
 
-  const top5movies = data.data
+  const top5movies = data.data;
 
   // Props 에러 방지
   const shouldForwardProp = (prop) =>
@@ -50,7 +49,11 @@ export default function BannerSlider() {
       <StyleSheetManager shouldForwardProp={shouldForwardProp}>
         <BannerSliderBox {...settings}>
           {top5movies.map((movie, index) => (
-            <BannerCard key={movie.movie_id} movie={movie} ranking={index+1}/>
+            <BannerCard
+              key={movie.movie_id}
+              movie={movie}
+              ranking={index + 1}
+            />
           ))}
         </BannerSliderBox>
       </StyleSheetManager>

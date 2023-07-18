@@ -2,15 +2,15 @@ import React from "react";
 import { ProfileSection } from "./reviewStyle";
 import Star from "../common/Star";
 
-export default function ProfileInfo({ star, content }) {
+import { ReactComponent as User } from "../../assets/icons/user.svg";
+
+export default function ProfileInfo({ nickname, star, content, profile }) {
   return (
     <ProfileSection>
-      <figure>
-        <img alt="프로필" />
-      </figure>
+      <figure>{profile === null ? <User /> : <img alt="프로필" />}</figure>
       <figcaption>
-        <p>작성자</p>
-        {star ? <Star>8</Star> : <p>{content}</p>}
+        <p>{nickname}</p>
+        {star ? <Star star={star} /> : <p>{content}</p>}
       </figcaption>
     </ProfileSection>
   );
