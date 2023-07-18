@@ -1,4 +1,5 @@
 import { styled } from "styled-components";
+import { StyledButton } from "../styles/commonStyle";
 
 export const StyledHeader = styled.header`
   position: fixed;
@@ -9,8 +10,8 @@ export const StyledHeader = styled.header`
   align-items: center;
   z-index: 20;
   transition: background-color 0.5s ease;
-  background-color: ${({ isScrolled }) =>
-    isScrolled ? "white" : "transparent"};
+  background: ${({ isScrolled }) =>
+    isScrolled ? "var(--bg-Color)" : "transparent"};
   box-shadow: ${({ isScrolled }) =>
     isScrolled ? "0px 2px 4px rgba(0, 0, 0, 0.1)" : "none"};
 `;
@@ -31,4 +32,15 @@ export const HeaderWrapper = styled.div`
 export const HeaderNav = styled.nav`
   display: flex;
   gap: 20px;
+`;
+
+export const HeaderButton = styled(StyledButton)`
+  color: ${({ isScrolled }) =>
+    isScrolled ? "var(--bg-Color)" : "var(--font-Color)"};
+  background: ${({ isScrolled }) =>
+    isScrolled ? "var(--main-Color)" : "none"};
+  border: ${({ isScrolled, color }) =>
+    isScrolled || color
+      ? "1px solid transparent"
+      : "1px solid var(--font-Color)"};
 `;

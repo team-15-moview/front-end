@@ -4,7 +4,7 @@ import { HeaderWrapper, StyledHeader, HeaderNav } from "./layoutStyle";
 import { StyleSheetManager } from "styled-components";
 import { Link } from "react-router-dom";
 import useModal from "../hooks/useModal";
-import { HeaderButton } from "../styles/commonStyle";
+import { HeaderButton } from "./layoutStyle";
 import LoginModal from "../components/modals/LoginModal";
 import EmailSigninModal from "../components/modals/EmailSigninModal";
 

@@ -11,7 +11,7 @@ export const StyledStarBox = styled.div`
   justify-content: center;
   align-items: center;
   padding: 2px 5px;
-  border: 1px solid #dddddd;
+  border: 1px solid var(--border-Color);
   border-radius: 10px;
 `;
 
@@ -36,7 +36,7 @@ export const LeftIcon = styled.div`
 export const StyledReviewBox = styled.div`
   display: flex;
   flex-direction: column;
-  border: 1px solid #dddddd;
+  border: 1px solid var(--border-Color);
   border-radius: 10px;
   padding: 10px 20px;
 `;
@@ -76,13 +76,7 @@ export const StyledLikeReply = styled.div`
   }
 
   & svg {
-    color: black;
-    cursor: pointer;
-    opacity: 0.5;
-  }
-
-  & svg:hover {
-    opacity: 1;
+    color: gray;
   }
 `;
 
@@ -92,11 +86,4 @@ export const StyledButton = styled.button`
   cursor: pointer;
   transition: background-color 0.3s ease;
   border: none;
-`;
-
-export const HeaderButton = styled(StyledButton)`
-  color: ${({ isScrolled }) => (isScrolled ? "white" : "black")};
-  background: ${({ isScrolled }) => (isScrolled ? "#6528F7" : "none")};
-  border: ${({ isScrolled, color }) =>
-    isScrolled || color ? "1px solid transparent" : "1px solid black"};
 `;
