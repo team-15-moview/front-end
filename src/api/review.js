@@ -14,7 +14,8 @@ export const deleteReview = async ({movieId, reviewId}) => {
 }
 
 export const getReviewsP = (movieId,lastReviewId) => async () => {
-  const response = await ourAxios.get(`api/reviews?movieId=${movieId}&lastReviewId=${lastReviewId}&size=10`);
+  console.log(movieId)
+  const response = await ourAxios.get(`api/reviews?movieId=${movieId}&lastReviewId=${lastReviewId}&size=2`);
   return response;
 }
 

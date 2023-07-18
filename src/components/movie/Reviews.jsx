@@ -3,47 +3,44 @@ import Review from "./Review"
 import { Heading, ReviewListContainer, ReviewSection } from "./style"
 import { getReviewsP } from "../../api/review";
 import { useReviewId } from "../../hooks/usePageParam";
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 
 function Reviews() {
-  const [reviewList, setReviewList] = useState([
-    {
-      "review_id": 1,
-      "nickname": "무린이",
-      "content": "최고의 영화!",
-      "likes_count": 437,
-      "comments_count": 3,
-      "star": 10
-    },
-    {
-      "review_id": 2,
-      "nickname": "무린이2",
-      "content": "최고의 영화!",
-      "likes_count": 437,
-      "comments_count": 3,
-      "star": 10
-    },
-    {
-      "review_id": 3,
-      "nickname": "무린이3",
-      "content": "최고의 영화!",
-      "likes_count": 437,
-      "comments_count": 3,
-      "star": 10
-    }
-  ]);
 
-  const {data, isSuccess} = useQuery('reviewList', getReviewsP(useReviewId(),-1));
+  // const obsRef = useRef(null);
+  // const [lastReviewId, setLastReviewId] = useState(9223372036854775807);
+  // const preventRef = useRef(true);
+  // const endRef = useRef(false);
 
-  if(isSuccess){
-    setReviewList(data);
+  // useEffect(()=>{
+  //   const observer = new IntersectionObserver(obsHandler, {threshold: 0.5});
+  //   if(obsRef.current) observer.observe(obsRef.current);
+  //   return () => { observer.disconnect(); }
+  // }, [])
+
+  // useEffect(()=>{
+  //   //getPost();
+  // }, [])
+
+  // const obsHandler = ((entries) => {
+    
+  // })
+
+
+
+  const {data, isLoading} = useQuery('reviewList', getReviewsP(useReviewId(), 9223372036854775807));
+
+  if(isLoading){
+    return <></>
   }
 
+  const reviewList = data.data;
+  console.log(reviewList)
   return (
     <ReviewSection>
       <Heading>리뷰</Heading>
       <ReviewListContainer>
-        {reviewList.map((review)=><Review key={review.review_id}review={review}/>)}
+        {reviewList.map((review)=><Review key={review.review_id} review={review}/>)}
       </ReviewListContainer>
     </ReviewSection>
   )

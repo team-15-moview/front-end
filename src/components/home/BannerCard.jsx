@@ -10,7 +10,7 @@ import ReviewBox from "./../common/ReviewBox";
 import { renderStars } from "../../utils/renderStar";
 import { useNavigate } from "react-router";
 
-export default function BannerCard({ movie, onClick }) {
+export default function BannerCard({ movie, ranking }) {
   const navigate = useNavigate();
   return (
     <BannerCardItem>
@@ -18,7 +18,7 @@ export default function BannerCard({ movie, onClick }) {
         <img src={movie.still} alt="스틸컷" onClick={()=>navigate(`/movies/${movie.movie_id}`)}/>
         <BannerCardFicaption>
           <p className="movie_title">{movie.title}</p>
-          <p className="movie_id">{movie.movie_id}</p>
+          <p className="movie_id">{ranking}</p>
           <div className="movie_rate">{renderStars(movie.rate)}</div>
         </BannerCardFicaption>
       </BannerCardFigure>
