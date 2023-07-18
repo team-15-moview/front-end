@@ -12,7 +12,7 @@ import { useNavigate } from "react-router-dom";
 export default function ReviewBox({ review }) {
   const navigate = useNavigate();
   return (
-    <StyledReviewBox onClick={()=>navigate(`reviews/${review.review_id}`)}>
+    <StyledReviewBox onClick={()=>navigate(`/reviews/${review.review_id}`)}>
       <ReviewBoxRow>
         <UserProfile>
           <figure>

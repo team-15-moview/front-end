@@ -54,7 +54,7 @@ function UserStar({ max, userStar, title, movie_id}) {
         }
       </StarsContainer>
       <Modal>
-        <WriteReviewModal title={title} movieId={movie_id} star={star} closeModal={closeModal}/>
+        <WriteReviewModal title={title} movie_id={movie_id} star={star} closeModal={closeModal}/>
       </Modal>
     </>
 
