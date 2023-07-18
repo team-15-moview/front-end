@@ -21,7 +21,7 @@ export default function LoginModal({ closeLogin }) {
       case "emailLogin":
         return <EmailLoginModal closeLogin={closeLogin} />;
       case "signup":
-        return <EmailSigninModal closeLogin={closeLogin} />;
+        return <EmailSigninModal closeSignin={closeLogin} />;
       default:
         return null;
     }
