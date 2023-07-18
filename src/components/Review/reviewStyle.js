@@ -39,7 +39,7 @@ export const ProfileSection = styled.div`
 `;
 
 export const ReviewContent = styled.div`
-  & textarea {
+  & p {
     width: 100%;
     height: 300px;
   }

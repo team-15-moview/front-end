@@ -11,7 +11,7 @@ export default function Review() {
           <div className="cols">
             <ProfileInfo star />
             <styled.ReviewContent>
-              <textarea placeholder="리뷰를 입력하세요" />
+              <p>리뷰리뷰</p>
             </styled.ReviewContent>
           </div>
           <div className="cols">
