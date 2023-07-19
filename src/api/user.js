@@ -61,7 +61,7 @@ export const signUp = async ({ email, password, nickname }) => {
 };
 
 export const deleteUser = async ({ userId }) => {
-  await ourAxios.delete(`api/users/${userId}`);
+  await deleteWithToken(`api/users/${userId}`);
 };
 
 export const login = async ({ email, password }) => {

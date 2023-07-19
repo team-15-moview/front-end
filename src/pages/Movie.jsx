@@ -16,6 +16,8 @@ function Movie() {
   }
   const movie = data.data;
   
+  console.log(movie)
+
   return (
     <>
       <StillBackground src={movie.still} />
