@@ -11,50 +11,58 @@ import { useNavigate } from "react-router-dom";
 import useModal from "../../hooks/useModal";
 import EditReviewModal from "../modals/EditReviewModal";
 
-export default function LikeReply({ likes_count, comments_count, review_id, is_author, movie, content, star, like_by_user }) {
+export default function LikeReply({
+  likes_count,
+  comments_count,
+  review_id,
+  is_author,
+  movie,
+  content,
+  star,
+  like_by_user,
+}) {
   const navigate = useNavigate();
   const [Modal, openModal, closeModal, openerRef] = useModal();
 
   const ReviewDeleteMutation = useMutation(deleteReview, {
     onSuccess: () => {
       QueryClient.invalidateQueries(`review${review_id}`);
-    }
-  })
+    },
+  });
 
   const onDelete = () => {
     ReviewDeleteMutation.mutate({ reviewId: review_id });
-    navigate('/');
-  }
+    navigate("/");
+  };
 
   const onClickEdit = () => {
     openModal();
-  }
+  };
 
   return (
     <StyledLikeReply>
-      <div>
-        <Like fill={like_by_user? 'var(--main-Color)' : 'grey'} /> {likes_count}
-      </div>
-      <div>
-        <Reply /> {comments_count}
-      </div>
+      <div>좋아요 {likes_count}</div>
+      <div>댓글 {comments_count}</div>
       <div />
-      {
-        is_author ?
-          <>
-            <div className="clickable" onClick={onClickEdit} ref={openerRef}>
-              <Edit /> 수정
-            </div>
-            <div onClick={onDelete} className="clickable">
-              <Delete /> 삭제
-            </div>
-            <Modal>
-              <EditReviewModal title={movie.title} {...{review_id,closeModal,star}} originalContent={content}/>
-            </Modal>
-          </>
-        :
+      {is_author ? (
+        <>
+          <div className="clickable" onClick={onClickEdit} ref={openerRef}>
+            <Edit /> 수정
+          </div>
+          <div onClick={onDelete} className="clickable">
+            <Delete /> 삭제
+          </div>
+          <Modal>
+            <EditReviewModal
+              title={movie.title}
+              {...{ review_id, closeModal, star }}
+              originalContent={content}
+            />
+          </Modal>
+        </>
+      ) : (
         <></>
-      }
+      )}
     </StyledLikeReply>
   );
 }

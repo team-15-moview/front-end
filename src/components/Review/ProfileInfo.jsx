@@ -7,7 +7,13 @@ import { ReactComponent as User } from "../../assets/icons/user.svg";
 export default function ProfileInfo({ nickname, star, content, profile }) {
   return (
     <ProfileSection>
-      <figure>{profile === null ? <User /> : <img alt="프로필" />}</figure>
+      <figure>
+        {profile === null ? (
+          <User fill="var(--font-Color)" />
+        ) : (
+          <img alt="프로필" />
+        )}
+      </figure>
       <figcaption>
         <p>{nickname}</p>
         {star ? <Star star={star} /> : <p>{content}</p>}

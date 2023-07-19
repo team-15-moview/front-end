@@ -14,51 +14,53 @@ export const BannerSliderBox = styled(Slider)`
 `;
 
 export const BannerCardItem = styled.div`
+  position: relative;
   display: flex;
 `;
 
 export const BannerCardFigure = styled.figure`
+  width: 100vw;
+  height: 80vh;
   position: relative;
 
   & img {
-    width: 900px;
-    filter: brightness(70%);
+    width: 100%;
+    object-fit: cover;
+    filter: brightness(60%);
   }
 `;
 
 export const BannerCardFicaption = styled.figcaption`
   position: absolute;
-  bottom: 40px;
-  right: 100px;
+  bottom: 70px;
+  left: 140px;
 
   & .movie_title {
-    font-size: 40px;
+    font-size: 50px;
     font-weight: 700;
     color: white;
   }
 
   & .movie_id {
+    font-size: 130px;
     position: absolute;
-    bottom: 60px;
+    bottom: 80px;
     left: -60px;
-    font-size: 100px;
     font-weight: 700;
-    color: white;
-    opacity: 0.5;
+    color: #dee2e699;
   }
 
   & .movie_rate {
     display: flex;
     align-items: center;
-    gap: 5px;
-    margin-top: 10px;
+    gap: 10px;
+    margin-top: 20px;
 
     & svg {
       display: flex;
       align-items: center;
-      width: 40px;
-      height: 40px;
-      color: yellow;
+      width: 35px;
+      height: 35px;
     }
   }
 `;
@@ -73,8 +75,7 @@ export const MovieSliderH1 = styled.h1`
   padding: 20px;
 `;
 
-export const MovieSliderBox = styled(BannerSliderBox)`
-`;
+export const MovieSliderBox = styled(BannerSliderBox)``;
 
 export const MovieRightIcon = styled(RightIcon)`
   right: -40px;
@@ -107,10 +108,32 @@ export const MovieSliderItem = styled.div`
 `;
 
 export const BannerReviewBox = styled.div`
-  width: 100%;
+  position: absolute;
+  width: 400px;
+  bottom: 40px;
+  right: 80px;
   display: flex;
   flex-direction: column;
   justify-content: center;
-  padding: 50px 50px 50px 30px;
-  gap: 30px;
+  gap: 10px;
+
+  & .bannerReviewWrapper {
+    display: flex;
+    flex-direction: column;
+    border-radius: 10px;
+    padding: 10px 20px;
+    background: #dee2e699;
+
+    & .reviewBoxRow {
+      box-sizing: border-box;
+      width: 100%;
+      display: flex;
+      justify-content: space-between;
+      padding: 5px 0;
+
+      & div {
+        border: none;
+      }
+    }
+  }
 `;

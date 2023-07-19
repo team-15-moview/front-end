@@ -38,14 +38,14 @@ export const HeaderNav = styled.nav`
 `;
 
 export const HeaderButton = styled(StyledButton)`
-  color: ${({ isScrolled, font }) =>
-    isScrolled && font ? "var(--font-Color)" : "var(--white-Color)"};
+  color: ${({ isScrolled, $font }) =>
+    isScrolled && $font ? "var(--font-Color)" : "var(--white-Color)"};
 
-  background: ${({ isScrolled, bgColor }) =>
-    isScrolled && bgColor ? "var(--main-Color);" : "none"};
+  background: ${({ isScrolled, $bgColor }) =>
+    isScrolled && $bgColor ? "var(--main-Color);" : "none"};
 
-  border: ${({ isScrolled, border }) => {
-    if (border) {
+  border: ${({ isScrolled, $border }) => {
+    if ($border) {
       if (isScrolled) return "1px solid transparent";
       else return "1px solid var(--white-Color)";
     }

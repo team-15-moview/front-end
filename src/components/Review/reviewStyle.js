@@ -3,7 +3,7 @@ import { LayoutMargin } from "../../styles/commonStyle";
 import { ModalWrapper, ModalButton } from "./../modals/modalStyle";
 
 export const MovieReviewContainer = styled(LayoutMargin)`
-  padding-top: 80px;
+  padding: 100px 0 80px 0;
   display: flex;
   flex-direction: column;
   gap: 20px;
@@ -12,6 +12,7 @@ export const MovieReviewContainer = styled(LayoutMargin)`
 export const ReviewRow = styled.div`
   display: flex;
   width: 100%;
+  height: 30vh;
   justify-content: space-between;
 
   & .cols:first-child {
@@ -33,8 +34,7 @@ export const ProfileSection = styled.div`
   gap: 10px;
 
   & svg {
-    width: 30px;
-    fill: gray;
+    width: 40px;
   }
 
   & figcaption {
@@ -122,10 +122,6 @@ export const ReviewLikeReplyButtons = styled.div`
     background-color: white;
   }
 
-  & svg {
-    opacity: 0.7;
-  }
-
   & button:hover {
     & > svg {
       fill: "var(--main-Color)";
@@ -183,4 +179,5 @@ export const ReviewModalButton = styled(ModalButton)`
   width: 100px;
   color: white;
   text-align: center;
+  background: ${({ $bg }) => $bg};
 `;

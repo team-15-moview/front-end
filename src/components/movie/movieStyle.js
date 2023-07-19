@@ -6,7 +6,7 @@ export const StillContainer = styled.section`
   position: relative;
   top: -35px;
   width: 100%;
-  height: 850px;
+  height: 80vh;
   overflow: hidden;
 `;
 export const StillImg = styled.section`
@@ -24,6 +24,8 @@ export const MovieInfoContainer = styled.section`
 `;
 export const PosterBox = styled.img`
   height: 372px;
+  box-shadow: rgba(0, 0, 0, 0.25) 0px 14px 28px,
+    rgba(0, 0, 0, 0.22) 0px 10px 10px;
 `;
 export const TextInfoContainer = styled.div`
   display: flex;
@@ -69,7 +71,6 @@ export const ReviewListContainer = styled.div`
 export const ReviewContainer = styled.div`
   width: 100%;
   height: 104px;
-  margin-bottom: 20px;
   cursor: pointer;
 `;
 

@@ -13,13 +13,13 @@ export const renderStars = (rate) => {
   for (let i = 0; i < totalStars; i++) {
     if (i < filledStars) {
       // 채워진 별
-      stars.push(<FillStar key={i} fill="yellow" />);
+      stars.push(<FillStar key={i} fill="gold" />);
     } else if (i === filledStars && hasHalfStar) {
       // 반 채워진 별
-      stars.push(<HalfStar key={i} fill="yellow" />);
+      stars.push(<HalfStar key={i} fill="gold" />);
     } else {
       // 빈 별
-      stars.push(<EmptyStar key={i} fill="yellow" />);
+      stars.push(<EmptyStar key={i} fill="gold" />);
     }
   }
 
