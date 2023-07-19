@@ -1,7 +1,8 @@
 import React, { useState, useEffect, useRef } from "react";
+
 import { HeaderWrapper, StyledHeader, HeaderNav, LogoBox } from "./layoutStyle";
-import {ReactComponent as WhiteLogo} from "../assets/icons/logoWhite.svg"
-import {ReactComponent as BlackLogo} from "../assets/icons/logoBlack.svg"
+import { ReactComponent as WhiteLogo } from "../assets/icons/logoWhite.svg";
+import { ReactComponent as BlackLogo } from "../assets/icons/logoBlack.svg";
 
 import { StyleSheetManager } from "styled-components";
 import { useNavigate } from "react-router-dom";
@@ -39,8 +40,8 @@ function Header() {
     <StyleSheetManager shouldForwardProp={shouldForwardProp}>
       <StyledHeader ref={headerRef} isScrolled={isScrolled}>
         <HeaderWrapper>
-          <LogoBox onClick={()=>navigate("/")} >
-            {isScrolled? <BlackLogo/> : <WhiteLogo/>}
+          <LogoBox onClick={() => navigate("/")}>
+            {isScrolled ? <BlackLogo /> : <WhiteLogo />}
           </LogoBox>
           <HeaderNav>
             <HeaderButton onClick={openModal} ref={openerRef} color="white">
