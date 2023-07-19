@@ -4,16 +4,16 @@ import { StyledButton } from "../styles/commonStyle";
 export const StyledHeader = styled.header`
   position: fixed;
   width: 100vw;
-  height: 50px;
+  height: 60px;
   display: flex;
   justify-content: center;
   align-items: center;
   z-index: 20;
   transition: background-color 0.5s ease;
   background: ${({ isScrolled }) =>
-    isScrolled ? "var(--bg-Color)" : "transparent"};
+    isScrolled ? "var(--white-Color)" : "transparent"};
   box-shadow: ${({ isScrolled }) =>
-    isScrolled ? "0px 2px 4px rgba(0, 0, 0, 0.1)" : "none"};
+    isScrolled ? "0px 1px 2px rgba(0, 0, 0, 0.1)" : "none"};
 `;
 
 export const HeaderWrapper = styled.div`
@@ -26,20 +26,28 @@ export const LogoBox = styled.div`
   cursor: pointer;
   display: flex;
   align-items: center;
-`
+`;
 
 export const HeaderNav = styled.nav`
   display: flex;
   gap: 20px;
+
+  & svg {
+    width: 35px;
+  }
 `;
 
 export const HeaderButton = styled(StyledButton)`
-  color: ${({ isScrolled }) =>
-    isScrolled ? "var(--bg-Color)" : "var(--font-Color)"};
-  background: ${({ isScrolled }) =>
-    isScrolled ? "var(--main-Color)" : "none"};
-  border: ${({ isScrolled, color }) =>
-    isScrolled || color
-      ? "1px solid transparent"
-      : "1px solid var(--font-Color)"};
+  color: ${({ isScrolled, font }) =>
+    isScrolled && font ? "var(--font-Color)" : "var(--white-Color)"};
+
+  background: ${({ isScrolled, bgColor }) =>
+    isScrolled && bgColor ? "var(--main-Color);" : "none"};
+
+  border: ${({ isScrolled, border }) => {
+    if (border) {
+      if (isScrolled) return "1px solid transparent";
+      else return "1px solid var(--white-Color)";
+    }
+  }};
 `;

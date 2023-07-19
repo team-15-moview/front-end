@@ -64,29 +64,23 @@ export const ReviewContent = styled.div`
 
 export const MovieInfoSection = styled.div`
   display: flex;
+  justify-content: space-between;
   width: 100%;
-  gap: 10px;
 
   & figure {
-    flex: 1;
-    width: 100%;
-    height: 0;
-    padding-bottom: calc((9 / 16) * 100%);
     position: relative;
+    width: 160px;
 
     & img {
       position: absolute;
       top: 0;
-      left: 0;
       width: 100%;
-      height: 100%;
-      object-fit: cover;
+      object-fit: contain;
     }
   }
 `;
 
 export const MovieDesc = styled.figcaption`
-  flex: 2;
   box-sizing: border-box;
   display: flex;
   flex-direction: column;
