@@ -25,7 +25,6 @@ function Comments({ review_id }) {
 
   if (isLoading)
     return <></>;
-
   const commentList = data.data.content;
   return (
     <>

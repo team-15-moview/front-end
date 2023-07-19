@@ -15,6 +15,7 @@ function Home() {
       <BannerSlider />
       <MovieSliderWarpper>
         <MovieSlider genre='애니메이션'>애니메이션</MovieSlider>
+        <MovieSlider genre='로맨스'>로맨스 영화</MovieSlider>
         <MovieSlider  genre='액션'>액션 영화</MovieSlider>
         <MovieSlider genre='범죄'>범죄 영화</MovieSlider>
       </MovieSliderWarpper>
