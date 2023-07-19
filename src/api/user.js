@@ -5,6 +5,7 @@ export const cookies = new Cookies();
 
 export const postWithToken = async (path, data) => {
   const accessToken = cookies.get('accessToken');
+  console.log(accessToken);
   const response = await ourAxios.post(path, data, {
     headers:{
       'Content-Type' : 'application/json',
@@ -12,6 +13,7 @@ export const postWithToken = async (path, data) => {
     },
     withCredentials:true
   })
+  console.log(response);
   return response;
 }
 
@@ -63,10 +65,12 @@ export const deleteUser = async ({userId}) => {
 }
 
 export const login = async ({email, password}) => {
-  await ourAxios.post(`api/users/login`,{email,password},{withCredentials:true});
+  const response = await ourAxios.post(`api/users/login`,{email,password},{withCredentials:true});
+  cookies.set("accessToken",response.headers.get('Authorization'));
+
 }
 
 export const logout = async () => {
-  postWithToken(`api/users/logout`);
+  cookies.remove("accessToken");
 }
 

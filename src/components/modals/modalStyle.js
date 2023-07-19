@@ -81,7 +81,7 @@ export const WriteCard = styled.div`
   }
   & .submit{
     cursor: pointer;
-    font-size: 32px;
+    font-size: 24px;
     font-weight: bold;
     color: white;
     text-align: center;
