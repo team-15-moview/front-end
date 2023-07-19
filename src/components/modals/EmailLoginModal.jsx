@@ -14,8 +14,8 @@ export default function EmailLoginModal({ closeLogin }) {
     onSuccess: (data) => {
       if (data) {
         dispatch(setUserToken());
-        alert("로그인에 성공했습니다!");
         window.location.reload(); // 새로고침
+        alert("로그인에 성공했습니다!");
       }
     },
     onError: (error) => {
