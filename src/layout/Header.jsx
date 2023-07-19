@@ -11,6 +11,12 @@ import { HeaderButton } from "./layoutStyle";
 import LoginModal from "../components/modals/LoginModal";
 import EmailSigninModal from "../components/modals/EmailSigninModal";
 
+import { useDispatch } from "react-redux";
+import { logout } from "../api/user";
+import { clearUserToken } from "../redux/modules/userTokenSlice";
+
+import { useSelector } from "react-redux";
+
 function Header() {
   const navigate = useNavigate();
   const [isScrolled, setIsScrolled] = useState(false);
@@ -36,6 +42,25 @@ function Header() {
   const [SigninModal, openSigninModal, closeSigninModal, openerSigninModalRef] =
     useModal();
 
+  const dispatch = useDispatch();
+
+  const handleLogout = async () => {
+    try {
+      await logout();
+      dispatch(clearUserToken());
+      window.location.reload(); // 새로고침
+      alert("로그아웃되었습니다.");
+    } catch (error) {
+      console.error("로그아웃 에러:", error);
+      // 에러 핸들링
+      alert("로그아웃에 실패했습니다. 다시 시도해주세요.");
+    }
+  };
+
+  const isLogin = useSelector((state) => {
+    return state.userToken.hasToken;
+  });
+
   return (
     <StyleSheetManager shouldForwardProp={shouldForwardProp}>
       <StyledHeader ref={headerRef} isScrolled={isScrolled}>
@@ -44,9 +69,13 @@ function Header() {
             {isScrolled ? <BlackLogo /> : <WhiteLogo />}
           </LogoBox>
           <HeaderNav>
-            <HeaderButton onClick={openModal} ref={openerRef} color="white">
-              로그인
-            </HeaderButton>
+            {isLogin ? (
+              <HeaderButton onClick={handleLogout}>로그아웃</HeaderButton>
+            ) : (
+              <HeaderButton onClick={openModal} ref={openerRef} color="white">
+                로그인
+              </HeaderButton>
+            )}
             {Modal && (
               <Modal>
                 <LoginModal closeLogin={closeModal} />
