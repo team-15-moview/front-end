@@ -68,7 +68,7 @@ export default function Review() {
             <ProfileInfo
               profile={null}
               nickname={review.author}
-              star={review.star / 2}
+              star={review.star}
             />
             <styled.ReviewContent>
               <p>{review.content}</p>
