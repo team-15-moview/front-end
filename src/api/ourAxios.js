@@ -1,13 +1,9 @@
 import axios from "axios";
 
-const deploy = true;
-
-const host = (deploy === true
-  ? "proxy"
-  :process.env.REACT_APP_SERVER_URL 
+const host = (window.location.hostname === "localhost"
+  ? process.env.REACT_APP_SERVER_URL
+  : "/proxy"
 );
-
-console.log(host);
 
 
 const ourAxios = axios.create({
