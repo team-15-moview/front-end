@@ -2,15 +2,14 @@ import ourAxios from "./ourAxios"
 import {Cookies} from "react-cookie"
 
 export const cookies = new Cookies();
-let token;
 
 export const postWithToken = async (path, data) => {
   const accessToken = cookies.get('accessToken');
-  console.log(token);
+  console.log(accessToken);
   const response = await ourAxios.post(path, data, {
     headers:{
       'Content-Type' : 'application/json',
-      Authorization : `${token}`
+      Authorization : `${accessToken}`
     },
     withCredentials:true
   })
@@ -67,10 +66,11 @@ export const deleteUser = async ({userId}) => {
 
 export const login = async ({email, password}) => {
   const response = await ourAxios.post(`api/users/login`,{email,password},{withCredentials:true});
-  token = response.headers.get('Authorization');
+  cookies.set("accessToken",response.headers.get('Authorization'));
+
 }
 
 export const logout = async () => {
-  postWithToken(`api/users/logout`);
+  cookies.remove("accessToken");
 }
 
