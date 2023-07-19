@@ -1,14 +1,27 @@
+// 리액트 쿼리 관련
 import { useQuery } from "react-query";
+
+// 컴포넌트
 import ProfileInfo from "../components/Review/ProfileInfo";
 import LikeReply from "../components/common/LikeReply";
+import ReviewSkeleton from "../components/Review/ReviewSkeleton";
+
+// 스타일 관련
 import * as styled from "./../components/Review/reviewStyle";
+
+// API 관련
 import { getReviewByIdP } from "../api/review";
+
+// 훅
 import { useReviewId } from "../hooks/usePageParam";
+import useModal from "../hooks/useModal";
+
+// SVG 아이콘
 import { ReactComponent as Like } from "../assets/icons/like.svg";
 import { ReactComponent as Reply } from "../assets/icons/reply.svg";
-import useModal from "../hooks/useModal";
+
+// 모달 컴포넌트
 import ReviewAddModal from "../components/modals/ReplyAddModal";
-import ReviewSkeleton from "../components/Review/ReviewSkeleton";
 
 export default function Review() {
   const [Modal, openModal, closeModal, openerRef] = useModal();
@@ -55,7 +68,7 @@ export default function Review() {
             <ProfileInfo
               profile={null}
               nickname={review.author}
-              star={review.star / 2}
+              star={review.star}
             />
             <styled.ReviewContent>
               <p>{review.content}</p>
