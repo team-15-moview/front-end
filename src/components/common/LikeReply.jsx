@@ -5,25 +5,28 @@ import { ReactComponent as Like } from "../../assets/icons/like.svg";
 import { ReactComponent as Reply } from "../../assets/icons/reply.svg";
 import { ReactComponent as Edit } from "../../assets/icons/edit.svg";
 import { ReactComponent as Delete } from "../../assets/icons/delete.svg";
-import { QueryClient, useMutation } from "react-query";
+import { useMutation, useQueryClient } from "react-query";
 import { deleteReview } from "../../api/review";
 import { useNavigate } from "react-router-dom";
 import useModal from "../../hooks/useModal";
 import EditReviewModal from "../modals/EditReviewModal";
 
 export default function LikeReply({ likes_count, comments_count, review_id, is_author, movie, content, star, like_by_user }) {
+  const queryClient = useQueryClient();
   const navigate = useNavigate();
   const [Modal, openModal, closeModal, openerRef] = useModal();
 
   const ReviewDeleteMutation = useMutation(deleteReview, {
     onSuccess: () => {
-      QueryClient.invalidateQueries(`review${review_id}`);
+      queryClient.invalidateQueries(`review${review_id}`);
+      queryClient.invalidateQueries(`reviews${movie.movie_id}`);
+      queryClient.invalidateQueries(`top5Movies`);
     }
   })
 
   const onDelete = () => {
     ReviewDeleteMutation.mutate({ reviewId: review_id });
-    navigate('/');
+    navigate(-1);
   }
 
   const onClickEdit = () => {

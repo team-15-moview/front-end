@@ -7,6 +7,8 @@ import { login } from "../../api/user";
 import { useDispatch } from "react-redux";
 import { setUserToken } from "../../redux/modules/userTokenSlice";
 
+import { ReactComponent as BlackLogo } from "../../assets/icons/logoBlack.svg";
+
 export default function EmailLoginModal({ closeLogin }) {
   const dispatch = useDispatch();
 
@@ -47,11 +49,11 @@ export default function EmailLoginModal({ closeLogin }) {
         X
       </button>
       {showSignup ? (
-        <EmailSigninModal closeLogin={closeLogin} />
+        <EmailSigninModal closeSignin={closeLogin} />
       ) : (
         <>
           <div className="modalHead">
-            <p>Moview</p>
+            <BlackLogo className="logo"/>
             <h1>이메일 로그인</h1>
           </div>
           <div className="ModalInputs">

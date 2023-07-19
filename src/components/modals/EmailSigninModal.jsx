@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { ModalButton, ModalWrapper } from "./modalStyle";
 import { useMutation } from "react-query";
 import { signUp } from "../../api/user";
+import { ReactComponent as BlackLogo } from "../../assets/icons/logoBlack.svg";
 
 export default function EmailSigninModal({ closeSignin }) {
   const mutation = useMutation(signUp, {})
@@ -38,7 +39,7 @@ export default function EmailSigninModal({ closeSignin }) {
     // 모든 입력값이 유효한 경우
     alert("모든 입력값이 유효합니다. 회원가입을 진행합니다.");
     // 추가적인 회원가입 처리 등을 진행할 수 있습니다.
-    mutation.mutate({email,nickname:id, password})
+    mutation.mutate({ email, nickname: id, password })
   };
 
   const handleKeyDown = (e) => {
@@ -53,7 +54,7 @@ export default function EmailSigninModal({ closeSignin }) {
         X
       </button>
       <div className="modalHead">
-        <p>Moview</p>
+        <BlackLogo className="logo" />
         <h1>이메일 회원가입</h1>
       </div>
       <div className="EmailInputs">

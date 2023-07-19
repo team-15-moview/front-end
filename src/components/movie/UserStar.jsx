@@ -7,7 +7,7 @@ import WriteReviewModal from "../modals/WriteReviewModal";
 
 
 function UserStar({ max, userStar, title, movie_id}) {
-  const [Modal, openModal, closeModal, openerRef] = useModal();
+  const [Modal, openModal, closeModal, openerRef, isOpen] = useModal();
   const [star, setStar] = useState(userStar);
   const [isHovered, setHovered] = useState(false);
   const [hoverStar, setHoverStar] = useState(0);
@@ -26,14 +26,14 @@ function UserStar({ max, userStar, title, movie_id}) {
     setStar(starValue);
   }
 
-
+  
 
   return (
     <>
       <StarsContainer onMouseEnter={HoverOn} onMouseLeave={HoverOff} onClick={openModal} ref={openerRef}>
         {
           Array(max * 2).fill().map((_, index) => {
-            const starValue = isHovered ? hoverStar * 2 : star * 2;
+            const starValue = isHovered ? hoverStar * 2 : isOpen? star * 2 : userStar * 2;
             const currentStarValue = index + 1;
 
             if (currentStarValue % 2) {
