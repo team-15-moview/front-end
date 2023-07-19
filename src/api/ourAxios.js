@@ -1,7 +1,13 @@
 import axios from "axios";
 
+const host = (window.location.hostname === "localhost"
+  ? process.env.REACT_APP_SERVER_URL
+  : "proxy"
+);
+
+
 const ourAxios = axios.create({
-  baseURL: process.env.REACT_APP_SERVER_URL,
+  baseURL: host,
 })
 
 export default ourAxios;
