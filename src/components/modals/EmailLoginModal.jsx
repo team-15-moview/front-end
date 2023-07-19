@@ -4,12 +4,34 @@ import EmailSigninModal from "./EmailSigninModal";
 import { useMutation } from "react-query";
 import { login } from "../../api/user";
 
+import { useDispatch } from "react-redux";
+import { setUserToken } from "../../redux/modules/userTokenSlice";
+
 export default function EmailLoginModal({ closeLogin }) {
-  const mutation = useMutation(login,{
-    onSuccess:()=>{
-      //로그인 리덕스 on
-    }
+  const dispatch = useDispatch();
+
+  const mutation = useMutation(login, {
+    onSuccess: (data) => {
+      if (data) {
+        dispatch(setUserToken());
+        alert("로그인에 성공했습니다!");
+        window.location.reload(); // 새로고침
+      }
+    },
+    onError: (error) => {
+      alert("다시 시도해주세요.");
+    },
   });
+
+  const handleLogin = () => {
+    // Perform login logic using the email and password values
+    console.log("Email:", email);
+    console.log("Password:", password);
+
+    // mutate로 로그인 요청 보내기
+    mutation.mutate({ email, password });
+  };
+
   const [showSignup, setShowSignup] = useState(false);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -17,14 +39,6 @@ export default function EmailLoginModal({ closeLogin }) {
   const handleSignupClick = (event) => {
     event.stopPropagation();
     setShowSignup(true);
-  };
-
-  const handleLogin = () => {
-    // Perform login logic using the email and password values
-    console.log("Email:", email);
-    console.log("Password:", password);
-    // ...additional login logic
-    mutation.mutate({email,password});
   };
 
   return (
@@ -43,11 +57,19 @@ export default function EmailLoginModal({ closeLogin }) {
           <div className="ModalInputs">
             <div className="ModalInputBox">
               <p>Email</p>
-              <input type="text" value={email} onChange={(e) => setEmail(e.target.value)} />
+              <input
+                type="text"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+              />
             </div>
             <div className="ModalInputBox">
               <p>PW</p>
-              <input type="password" value={password} onChange={(e) => setPassword(e.target.value)} />
+              <input
+                type="password"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+              />
             </div>
           </div>
           <ModalButton onClick={handleLogin}>로그인</ModalButton>
