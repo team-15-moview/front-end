@@ -24,13 +24,17 @@ import { ReactComponent as Reply } from "../assets/icons/reply.svg";
 import ReviewAddModal from "../components/modals/ReplyAddModal";
 import Comments from "../components/Review/Comments";
 import { deleteLike, postLike } from "../api/like";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 export default function Review() {
   const navigate = useNavigate();
   const review_id = useReviewId();
   const queryClient = useQueryClient();
+  useEffect(()=>{
+    queryClient.invalidateQueries(`review${review_id}`);
+    queryClient.invalidateQueries(`comments${review_id}`);
+  },[])
   const likePostMutation = useMutation(postLike,{
     onSuccess: ()=>{
       queryClient.invalidateQueries(`review${review_id}`);
@@ -70,9 +74,10 @@ export default function Review() {
     },
   };
 
-  const { data, isLoading, error } = useQuery(
+  const { data, isLoading, isError, error } = useQuery(
     `review${review_id}`,
-    getReviewByIdP(review_id)
+    getReviewByIdP(review_id),
+    {initialData:{data:defaultReview}}
   );
 
   if (isLoading) {
@@ -82,12 +87,11 @@ export default function Review() {
   let review = data ? data.data : defaultReview;
   let reviewedmovie = data ? data.data.movie : defaultReview;
 
-  if (error) {
+  if (isError) {
     review = defaultReview;
     reviewedmovie = defaultReview.movie;
     console.log(error.message);
   }
-  console.log(review)
 
   
   const likeOnClick = () =>{
@@ -126,8 +130,6 @@ export default function Review() {
         </styled.ReviewRow>
         <styled.LikeReplyRow>
           <LikeReply likes={review.likes_count} comments={review.comments_count}/>
-          <button onClick={()=>ReviewEditMutation.mutate({reviewId:review_id,content:'정말 재미있어요',star:5})}>dsfsdfsdf</button>
-          <button onClick={()=>{ReviewDeleteMutation.mutate({reviewId:review_id}); navigate('/');}}>삭제</button>
         </styled.LikeReplyRow>
         <styled.ReviewLikeReplyButtons>
           <button onClick={likeOnClick}>
