@@ -2,7 +2,7 @@ import { useQuery } from "react-query";
 import Review from "./Review"
 import { Heading, ReviewListContainer, ReviewSection } from "./movieStyle"
 import { getReviewsP } from "../../api/review";
-import { useReviewId } from "../../hooks/usePageParam";
+import { useMovieId } from "../../hooks/usePageParam";
 import { useEffect, useRef, useState } from "react";
 
 function Reviews() {
@@ -28,7 +28,7 @@ function Reviews() {
 
 
 
-  const {data, isLoading} = useQuery('reviewList', getReviewsP(useReviewId(), '9223372036854775807'));
+  const {data, isLoading} = useQuery(`reviewList${useMovieId()}`, getReviewsP(useMovieId(), '9223372036854775807'));
 
   if(isLoading){
     return <></>

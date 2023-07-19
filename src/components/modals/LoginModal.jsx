@@ -42,10 +42,10 @@ export default function LoginModal({ closeLogin }) {
             <h1>로그인</h1>
           </div>
           <div className="snsLoginButtons">
-            <ModalButton bg="yellow" border="yellow">
+            <ModalButton $bg="yellow" border="yellow">
               카카오로 시작하기
             </ModalButton>
-            <ModalButton bg="white" border="black">
+            <ModalButton $bg="white" border="black">
               구글로 시작하기
             </ModalButton>
           </div>

@@ -1,5 +1,5 @@
 import ourAxios from "./ourAxios"
-import { deleteWithToken, postWithToken, putWithToken } from "./user";
+import { deleteWithToken, getWithToken, postWithToken, putWithToken } from "./user";
 
 export const postReview = async ({movie_id, content, star} ) => {
   await postWithToken(`api/reviews`, {movie_id, content, star});
@@ -19,6 +19,6 @@ export const getReviewsP = (movieId,lastReviewId) => async () => {
 }
 
 export const getReviewByIdP = (reviewId) => async () => {
-  const response = await ourAxios.get(`api/reviews/${reviewId}`);
+  const response = await getWithToken(`api/reviews/${reviewId}`);
   return response;
 }

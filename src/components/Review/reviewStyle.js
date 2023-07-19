@@ -185,4 +185,5 @@ export const ReviewModalButton = styled(ModalButton)`
   justify-content: center;
   width: 100px;
   color: white;
+  text-align: center;
 `;

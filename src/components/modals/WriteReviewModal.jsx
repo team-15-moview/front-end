@@ -8,7 +8,7 @@ function WriteReviewModal({title, movie_id, star, closeModal}) {
   const queryClient = useQueryClient();
   const mutation = useMutation(postReview,{
     onSuccess:()=>{
-      queryClient.invalidateQueries('reviewList');
+      queryClient.invalidateQueries(`reviewList${movie_id}`);
     }
   })
 
