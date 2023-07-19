@@ -22,6 +22,7 @@ import { ReactComponent as Reply } from "../assets/icons/reply.svg";
 
 // 모달 컴포넌트
 import ReviewAddModal from "../components/modals/ReplyAddModal";
+import Comments from "../components/Review/Comments";
 
 export default function Review() {
   const [Modal, openModal, closeModal, openerRef] = useModal();
@@ -43,7 +44,7 @@ export default function Review() {
   };
 
   const { data, isLoading, error } = useQuery(
-    "review",
+    `review${useReviewId()}`,
     getReviewByIdP(useReviewId())
   );
 
@@ -88,7 +89,7 @@ export default function Review() {
           </div>
         </styled.ReviewRow>
         <styled.LikeReplyRow>
-          <LikeReply likes={review.likes_count} comments="10" />
+          <LikeReply likes={review.likes_count} comments={review.comments_count}/>
         </styled.LikeReplyRow>
         <styled.ReviewLikeReplyButtons>
           <button>
@@ -99,19 +100,11 @@ export default function Review() {
           </button>
           {Modal && (
             <Modal>
-              <ReviewAddModal closeModal={closeModal} />
+              <ReviewAddModal closeModal={closeModal} review_id={review.review_id}/>
             </Modal>
           )}
         </styled.ReviewLikeReplyButtons>
-        <styled.CommentRow>
-          <div className="reply">
-            <ProfileInfo nickname="더미" profile={null} content="좋아요~" />
-            <div className="replyButtons">
-              <button>편집</button>
-              <button>삭제</button>
-            </div>
-          </div>
-        </styled.CommentRow>
+        <Comments review_id={review.review_id}/>
       </styled.MovieReviewContainer>
     </>
   );

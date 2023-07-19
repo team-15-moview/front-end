@@ -99,7 +99,7 @@ export const ModalButton = styled(StyledButton)`
   border-radius: 10px;
   width: 300px;
   height: 50px;
-  background: ${({ bg }) => bg};
+  background: ${({ $bg }) => $bg};
   border: ${({ border }) => `1px solid ${border}`};
 `;
 
