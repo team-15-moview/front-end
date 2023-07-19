@@ -5,6 +5,8 @@ const host = (process.env.REACT_APP_DEPLOY === "deploy"
   :process.env.REACT_APP_SERVER_URL 
 );
 
+console.log(host);
+
 
 const ourAxios = axios.create({
   baseURL: host,
