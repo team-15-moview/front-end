@@ -1,4 +1,5 @@
 import ourAxios from "./ourAxios"
+import { getWithToken } from "./user";
 
 export const getAllMovies = async () => {
   const response = await ourAxios.get('api/movies');
@@ -17,7 +18,7 @@ export const getMoviesbyJenreP = (genre) => async () => {
 }
 
 export const getMoviebyIdP = (id) => async () => {
-  const response = await ourAxios.get(`api/movies/${id}`);
+  const response = getWithToken(`api/movies/${id}`);
   return response;
 }
 

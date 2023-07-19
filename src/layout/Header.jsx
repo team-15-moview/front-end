@@ -135,7 +135,7 @@ function Header() {
                 <HeaderButton
                   onClick={handleLogout}
                   isScrolled={isScrolled}
-                  font
+                  $font
                 >
                   로그아웃
                 </HeaderButton>
@@ -144,7 +144,7 @@ function Header() {
                   onClick={openModal}
                   ref={openerRef}
                   isScrolled={isScrolled}
-                  font
+                  $font
                 >
                   로그인
                 </HeaderButton>

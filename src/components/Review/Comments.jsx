@@ -5,8 +5,14 @@ import ProfileInfo from "./ProfileInfo";
 import useModal from "../../hooks/useModal";
 import ReplyEditModal from "../modals/ReplyEditModal";
 import { useState } from "react";
+import { StyledEditDelete } from "../../styles/commonStyle";
+import { ReactComponent as Edit } from "../../assets/icons/edit.svg";
+import { ReactComponent as Delete } from "../../assets/icons/delete.svg";
+import { useSelector } from "react-redux";
 
 function Comments({ review_id }) {
+  const nickname = useSelector((state) => state.userToken.nickname);
+  console.log(nickname);
   const queryClient = useQueryClient();
   const { data, isLoading } = useQuery(`comments${review_id}`, getCommentsP(review_id, -1));
   const deleteMutation = useMutation(deleteComment, {
@@ -16,7 +22,7 @@ function Comments({ review_id }) {
     }
   })
   const [Modal, openModal, closeModal, openerRef] = useModal();
-  const [editComment, setEditComment] = useState({id:0,content:''});
+  const [editComment, setEditComment] = useState({ id: 0, content: '' });
 
   const onDeleteComment = (comment_id) => () => {
     deleteMutation.mutate({ review_id, comment_id });
@@ -32,15 +38,25 @@ function Comments({ review_id }) {
         {commentList.map(({ comment }) => (
           <div key={comment.id} className="reply">
             <ProfileInfo nickname={comment.nickname} profile={null} content={comment.content} />
-            <div className="replyButtons">
-              <button onClick={()=>{openModal(); setEditComment({id:comment.id, content:comment.content})}}>편집</button>
-              <button onClick={onDeleteComment(comment.id)}>삭제</button>
-            </div>
+            {
+              nickname === comment.nickname ?
+                <StyledEditDelete className="replyButtons">
+                  <div className="clickable" onClick={() => { openModal(); setEditComment({ id: comment.id, content: comment.content }) }}>
+                    <Edit /> 수정
+                  </div>
+                  <div onClick={onDeleteComment(comment.id)} className="clickable">
+                    <Delete /> 삭제
+                  </div>
+                </StyledEditDelete>
+                :
+                <></>
+            }
+
           </div>
         ))}
       </CommentRow>
       <Modal>
-        <ReplyEditModal closeModal={closeModal} review_id={review_id} comment_id={editComment.id} originerReview={editComment.content}/>
+        <ReplyEditModal closeModal={closeModal} review_id={review_id} comment_id={editComment.id} originalReview={editComment.content} />
       </Modal>
     </>
 

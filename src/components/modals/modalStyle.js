@@ -49,7 +49,8 @@ export const WriteCard = styled.div`
   box-shadow: 3px 3px 5px 5px grey;
   border-radius: 20px;
   background-color: white;
-  padding: 27px;
+  padding: 27px 27px;
+  padding-right: 37px;
   display: flex;
   flex-flow: column wrap;
   gap: 10px;
@@ -57,6 +58,7 @@ export const WriteCard = styled.div`
   & .header{
     display: flex;
     justify-content: space-between;
+    width: 100%;
   }
   & .title{
     margin: 3px 9px;
@@ -73,11 +75,13 @@ export const WriteCard = styled.div`
     border: none;
     display: block;
     font-size:20px;
+    width: 100%;
   }
   & .submitContainer{
     display: flex;
     flex-flow: row-reverse wrap;
     align-items: center;
+    width: 100%;
   }
   & .submit{
     cursor: pointer;
@@ -90,7 +94,6 @@ export const WriteCard = styled.div`
     border: none;
     border-radius: 10px;
     background: rgb(101,40,247);
-
   }
 
 `

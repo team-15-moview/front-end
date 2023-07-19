@@ -3,12 +3,12 @@ import { ReactComponent as HalfStar } from "../assets/icons/stars/halfStar.svg";
 import { ReactComponent as FillStar } from "../assets/icons/stars/fillStar.svg";
 
 export const renderStars = (rate) => {
-  const movieRate = +rate;
+  const movieRate = +rate * 2;
   const stars = [];
   const totalStars = 5;
 
-  const filledStars = Math.floor(movieRate);
-  const hasHalfStar = movieRate % 1 !== 0;
+  const filledStars = Math.floor(movieRate/2);
+  const hasHalfStar = movieRate % 2 !== 0;
 
   for (let i = 0; i < totalStars; i++) {
     if (i < filledStars) {
