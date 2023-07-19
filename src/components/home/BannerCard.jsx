@@ -15,11 +15,15 @@ export default function BannerCard({ movie, ranking }) {
   return (
     <BannerCardItem>
       <BannerCardFigure>
-        <img src={movie.still} alt="스틸컷" onClick={()=>navigate(`/movies/${movie.movie_id}`)}/>
+        <img
+          src={movie.still}
+          alt="스틸컷"
+          onClick={() => navigate(`/movies/${movie.movie_id}`)}
+        />
         <BannerCardFicaption>
           <p className="movie_title">{movie.title}</p>
           <p className="movie_id">{ranking}</p>
-          <div className="movie_rate">{renderStars(movie.star)}</div>
+          <div className="movie_rate">{renderStars(movie.rate)}</div>
         </BannerCardFicaption>
       </BannerCardFigure>
       <BannerReviewBox>
