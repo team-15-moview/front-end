@@ -30,9 +30,9 @@ export default function ReplyAddModal({ closeModal, review_id,  }) {
       </button>
       <div>
         <h1>댓글 작성</h1>
-        <textarea name="" id="" cols="30" rows="10" onChange={onChangeHandler} value={content} placeholder="이 리뷰에 대한 생각을 자유롭게 남겨주세요."/>
+        <textarea name="" id="" cols="30" rows="10" placeholder="이 리뷰에 대한 생각을 자유롭게 남겨주세요." onChange={onChangeHandler} value={content} />
       </div>
       <ReviewModalButton onClick={onSubmitHandler} $bg="var(--main-Color)">저장</ReviewModalButton>
     </ReviewModalWrapper>
-  );
+  )
 }

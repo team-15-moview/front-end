@@ -3,8 +3,8 @@ import { ReviewModalButton, ReviewModalWrapper } from "../Review/reviewStyle";
 import { useMutation, useQueryClient } from "react-query";
 import { putComment } from "../../api/comment";
 
-function ReplyEditModal({closeModal, review_id, comment_id, originerReview}) {
-  const [content, setContent] = useState(originerReview);
+function ReplyEditModal({closeModal, review_id, comment_id, originalReview}) {
+  const [content, setContent] = useState("");
   const queryClient = useQueryClient();
   const mutation = useMutation(putComment,{
     onSuccess:()=>{
@@ -30,7 +30,7 @@ function ReplyEditModal({closeModal, review_id, comment_id, originerReview}) {
       </button>
       <div>
         <h1>댓글 수정</h1>
-        <textarea name="" id="" cols="30" rows="10" onChange={onChangeHandler} value={content} />
+        <textarea name="" id="" cols="30" rows="10" placeholder={originalReview} onChange={onChangeHandler} value={content} />
       </div>
       <ReviewModalButton onClick={onSubmitHandler} $bg="var(--main-Color)">저장</ReviewModalButton>
     </ReviewModalWrapper>

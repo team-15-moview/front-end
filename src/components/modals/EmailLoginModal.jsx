@@ -13,8 +13,8 @@ export default function EmailLoginModal({ closeLogin }) {
   const mutation = useMutation(login, {
     onSuccess: (data) => {
       if (data) {
-        dispatch(setUserToken());
-        window.location.reload(); // 새로고침
+        dispatch(setUserToken(data.data.nickname));
+        closeLogin(); // 새로고침
         alert("로그인에 성공했습니다!");
       }
     },
