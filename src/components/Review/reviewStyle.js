@@ -98,6 +98,8 @@ export const MovieDesc = styled.figcaption`
 `;
 
 export const LikeReplyRow = styled.div`
+  display: flex;
+  flex-flow: row wrap;
   margin: 10px 0;
   padding-left: 20px;
 `;
@@ -117,15 +119,16 @@ export const ReviewLikeReplyButtons = styled.div`
     gap: 5px;
     border: none;
     cursor: pointer;
+    background-color: white;
   }
 
   & svg {
-    opacity: 0.5;
+    opacity: 0.7;
   }
 
   & button:hover {
     & > svg {
-      fill: var(--main-Color);
+      fill: "var(--main-Color)";
       opacity: 1;
     }
   }

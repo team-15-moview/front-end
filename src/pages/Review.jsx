@@ -10,7 +10,7 @@ import ReviewSkeleton from "../components/Review/ReviewSkeleton";
 import * as styled from "./../components/Review/reviewStyle";
 
 // API 관련
-import { deleteReview, getReviewByIdP, putReview } from "../api/review";
+import { getReviewByIdP } from "../api/review";
 
 // 훅
 import { useReviewId } from "../hooks/usePageParam";
@@ -24,17 +24,16 @@ import { ReactComponent as Reply } from "../assets/icons/reply.svg";
 import ReviewAddModal from "../components/modals/ReplyAddModal";
 import Comments from "../components/Review/Comments";
 import { deleteLike, postLike } from "../api/like";
-import { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useEffect } from "react";
 
 export default function Review() {
-  const navigate = useNavigate();
   const review_id = useReviewId();
   const queryClient = useQueryClient();
   useEffect(()=>{
     queryClient.invalidateQueries(`review${review_id}`);
     queryClient.invalidateQueries(`comments${review_id}`);
-  },[])
+  },[review_id,queryClient])
+
   const likePostMutation = useMutation(postLike,{
     onSuccess: ()=>{
       queryClient.invalidateQueries(`review${review_id}`);
@@ -45,16 +44,6 @@ export default function Review() {
       queryClient.invalidateQueries(`review${review_id}`);
     }
   });
-  const ReviewEditMutation = useMutation(putReview,{
-    onSuccess: ()=>{
-      queryClient.invalidateQueries(`review${review_id}`);
-    }
-  });
-  const ReviewDeleteMutation = useMutation(deleteReview,{
-    onSuccess: () =>{
-      queryClient.invalidateQueries(`review${review_id}`);
-    }
-  })
 
   const [Modal, openModal, closeModal, openerRef] = useModal();
 
@@ -129,11 +118,12 @@ export default function Review() {
           </div>
         </styled.ReviewRow>
         <styled.LikeReplyRow>
-          <LikeReply likes={review.likes_count} comments={review.comments_count}/>
+          <LikeReply {...review}/>
+
         </styled.LikeReplyRow>
         <styled.ReviewLikeReplyButtons>
           <button onClick={likeOnClick}>
-            <Like /> 좋아요
+            <Like fill={review.like_by_user? 'var(--main-Color)' : 'grey'}/> 좋아요
           </button>
           <button onClick={openModal} ref={openerRef}>
             <Reply /> 댓글

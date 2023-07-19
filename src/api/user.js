@@ -73,7 +73,7 @@ export const login = async ({ email, password }) => {
     );
     cookies.set("accessToken", response.headers.get("Authorization"));
 
-    return cookies.get("accessToken");
+    return response;
   } catch (error) {
     console.error("로그인 실패:", error);
     alert("로그인에 실패했습니다. 다시 시도해주세요.");
