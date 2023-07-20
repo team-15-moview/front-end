@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { ModalWrapper, ModalButton } from "./modalStyle";
 import EmailLoginModal from "./EmailLoginModal";
 import EmailSigninModal from "./EmailSigninModal";
+import { ReactComponent as BlackLogo } from "../../assets/icons/logoBlack.svg";
 
 export default function LoginModal({ closeLogin }) {
   const [selectedContent, setSelectedContent] = useState(null);
@@ -38,7 +39,7 @@ export default function LoginModal({ closeLogin }) {
             X
           </button>
           <div className="modalHead">
-            <p>Moview</p>
+            <BlackLogo className="logo" />
             <h1>로그인</h1>
           </div>
           <div className="snsLoginButtons">
