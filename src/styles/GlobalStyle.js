@@ -1,6 +1,10 @@
 import { createGlobalStyle } from "styled-components";
 
 const GlobalStyle = createGlobalStyle`
+    * {
+	    font-family : 'Pretendard';
+    }
+
     body{
         --main-Color : #6528F7;
         --border-Color: #DEE2E6;
