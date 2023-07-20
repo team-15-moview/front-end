@@ -7,7 +7,9 @@ export default function MovieCard({ movie }) {
   const navigate = useNavigate();
   return (
     <MovieSliderItem>
-      <img src={movie.thumbnail} alt="포스터" onClick={()=>navigate(`/movies/${movie.movie_id}`)}/>
+      <figure>
+        <img src={movie.thumbnail} alt="포스터" onClick={()=>navigate(`/movies/${movie.movie_id}`)} loading="lazy"/>
+      </figure>
       <figcaption>
         <p className="movieTitle">{movie.title}</p>
         <p className="movieTitle">{movie.open_date}</p>

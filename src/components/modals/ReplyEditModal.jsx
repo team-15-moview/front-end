@@ -1,14 +1,14 @@
 import React, { useState } from "react";
 import { ReviewModalButton } from "../Review/reviewStyle";
 import { useMutation, useQueryClient } from "react-query";
-import { postComment } from "../../api/comment";
+import { putComment } from "../../api/comment";
 import { WriteCard } from "./modalStyle";
 import { ReactComponent as Close } from "../../assets/icons/close.svg";
 
-export default function ReplyAddModal({ closeModal, review_id }) {
+function ReplyEditModal({ closeModal, review_id, comment_id, originalReview }) {
   const [content, setContent] = useState("");
   const queryClient = useQueryClient();
-  const mutation = useMutation(postComment, {
+  const mutation = useMutation(putComment, {
     onSuccess: () => {
       queryClient.invalidateQueries(`comments${review_id}`);
       queryClient.invalidateQueries(`review${review_id}`);
@@ -20,7 +20,7 @@ export default function ReplyAddModal({ closeModal, review_id }) {
   };
 
   const onSubmitHandler = () => {
-    mutation.mutate({ review_id, content });
+    mutation.mutate({ review_id, comment_id, content });
     closeModal();
   };
 
@@ -30,16 +30,16 @@ export default function ReplyAddModal({ closeModal, review_id }) {
         <Close fill="var(--font-Color)" />
       </button>
       <div>
-        <h1>댓글 작성</h1>
+        <h1>댓글 수정</h1>
         <textarea
           name=""
           id=""
-          className="textbox"
           cols="30"
           rows="10"
+          className="textbox"
+          placeholder={originalReview}
           onChange={onChangeHandler}
           value={content}
-          placeholder="리뷰에 댓글을 작성해보세요!"
         />
       </div>
       <ReviewModalButton onClick={onSubmitHandler} $bg="var(--main-Color)">
@@ -48,3 +48,5 @@ export default function ReplyAddModal({ closeModal, review_id }) {
     </WriteCard>
   );
 }
+
+export default ReplyEditModal;

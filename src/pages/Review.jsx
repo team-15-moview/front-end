@@ -1,5 +1,5 @@
 // 리액트 쿼리 관련
-import { useQuery } from "react-query";
+import { useMutation, useQuery, useQueryClient } from "react-query";
 
 // 컴포넌트
 import ProfileInfo from "../components/Review/ProfileInfo";
@@ -22,8 +22,36 @@ import { ReactComponent as Reply } from "../assets/icons/reply.svg";
 
 // 모달 컴포넌트
 import ReviewAddModal from "../components/modals/ReplyAddModal";
+import Comments from "../components/Review/Comments";
+import { deleteLike, postLike } from "../api/like";
+import { useEffect } from "react";
+import { useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
 
 export default function Review() {
+  const navigate = useNavigate();
+  const isLogin = useSelector((state) => {
+    return state.userToken.hasToken;
+  });
+
+  const review_id = useReviewId();
+  const queryClient = useQueryClient();
+  useEffect(() => {
+    queryClient.invalidateQueries(`review${review_id}`);
+    queryClient.invalidateQueries(`comments${review_id}`);
+  }, [review_id, queryClient]);
+
+  const likePostMutation = useMutation(postLike, {
+    onSuccess: () => {
+      queryClient.invalidateQueries(`review${review_id}`);
+    },
+  });
+  const likeDeleteMutation = useMutation(deleteLike, {
+    onSuccess: () => {
+      queryClient.invalidateQueries(`review${review_id}`);
+    },
+  });
+
   const [Modal, openModal, closeModal, openerRef] = useModal();
 
   const defaultReview = {
@@ -42,9 +70,10 @@ export default function Review() {
     },
   };
 
-  const { data, isLoading, error } = useQuery(
-    "review",
-    getReviewByIdP(useReviewId())
+  const { data, isLoading, isError, error } = useQuery(
+    `review${review_id}`,
+    getReviewByIdP(review_id),
+    { initialData: { data: defaultReview } }
   );
 
   if (isLoading) {
@@ -54,11 +83,31 @@ export default function Review() {
   let review = data ? data.data : defaultReview;
   let reviewedmovie = data ? data.data.movie : defaultReview;
 
-  if (error) {
+  if (isError) {
     review = defaultReview;
     reviewedmovie = defaultReview.movie;
     console.log(error.message);
   }
+
+  const likeOnClick = () => {
+    if (isLogin) {
+      review.like_by_user
+        ? likeDeleteMutation.mutate({ review_id })
+        : likePostMutation.mutate({ review_id });
+    } else {
+      alert("로그인이 필요합니다!");
+    }
+  };
+
+  const replyOnClick = () => {
+    if (isLogin) openModal();
+    else {
+      alert("로그인이 필요합니다!");
+      return undefined;
+    }
+  };
+
+  console.log(review)
 
   return (
     <>
@@ -81,37 +130,33 @@ export default function Review() {
                 <p>{reviewedmovie.open_date}</p>
                 <p>{reviewedmovie.director}</p>
               </styled.MovieDesc>
-              <figure>
+              <figure onClick={()=>navigate(`/movies/${reviewedmovie.movie_id}`)}>
                 <img src={reviewedmovie.thumbnail} alt="포스터" />
               </figure>
             </styled.MovieInfoSection>
           </div>
         </styled.ReviewRow>
         <styled.LikeReplyRow>
-          <LikeReply likes={review.likes_count} comments="10" />
+          <LikeReply {...review} />
         </styled.LikeReplyRow>
         <styled.ReviewLikeReplyButtons>
-          <button>
-            <Like /> 좋아요
+          <button onClick={likeOnClick}>
+            <Like fill={review.like_by_user ? "var(--main-Color)" : "grey"} />
+            좋아요
           </button>
-          <button onClick={openModal} ref={openerRef}>
+          <button onClick={replyOnClick} ref={openerRef}>
             <Reply /> 댓글
           </button>
           {Modal && (
             <Modal>
-              <ReviewAddModal closeModal={closeModal} />
+              <ReviewAddModal
+                closeModal={closeModal}
+                review_id={review.review_id}
+              />
             </Modal>
           )}
         </styled.ReviewLikeReplyButtons>
-        <styled.CommentRow>
-          <div className="reply">
-            <ProfileInfo nickname="더미" profile={null} content="좋아요~" />
-            <div className="replyButtons">
-              <button>편집</button>
-              <button>삭제</button>
-            </div>
-          </div>
-        </styled.CommentRow>
+        <Comments review_id={review.review_id} />
       </styled.MovieReviewContainer>
     </>
   );

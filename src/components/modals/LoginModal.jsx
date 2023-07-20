@@ -2,6 +2,8 @@ import React, { useState } from "react";
 import { ModalWrapper, ModalButton } from "./modalStyle";
 import EmailLoginModal from "./EmailLoginModal";
 import EmailSigninModal from "./EmailSigninModal";
+import { ReactComponent as Close } from "../../assets/icons/close.svg";
+import { ReactComponent as BlackLogo } from "../../assets/icons/logoBlack.svg";
 
 export default function LoginModal({ closeLogin }) {
   const [selectedContent, setSelectedContent] = useState(null);
@@ -35,17 +37,17 @@ export default function LoginModal({ closeLogin }) {
       {showDefaultModal && (
         <>
           <button className="closeButton" onClick={closeLogin}>
-            X
+            <Close fill="var(--font-Color)" />
           </button>
           <div className="modalHead">
-            <p>Moview</p>
+            <BlackLogo className="logo" />
             <h1>로그인</h1>
           </div>
           <div className="snsLoginButtons">
-            <ModalButton bg="yellow" border="yellow">
+            <ModalButton $bg="yellow" border="yellow">
               카카오로 시작하기
             </ModalButton>
-            <ModalButton bg="white" border="black">
+            <ModalButton $bg="white" border="var(--border-Color)">
               구글로 시작하기
             </ModalButton>
           </div>

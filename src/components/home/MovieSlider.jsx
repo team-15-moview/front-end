@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import {
   MovieSliderH1,
   MovieSliderBox,
@@ -17,16 +17,18 @@ import { ReactComponent as Right } from "../../assets/icons/right.svg";
 import { useQuery } from "react-query";
 import { getMoviesbyJenreP } from "../../api/movie";
 
-export default function MovieSlider({ children , genre}) {
+export default function MovieSlider({ children, genre }) {
+  const { data, isLoading } = useQuery(
+    `${genre}Movies`,
+    getMoviesbyJenreP(genre)
+  );
 
-  const {data, isLoading} = useQuery(`${genre}Movies`,getMoviesbyJenreP(genre));
-
-  if(isLoading){
-    return <></>
+  if (isLoading) {
+    return <></>;
   }
-  
+
   const movies = data.data;
-  
+
   // Props 에러 방지
   const shouldForwardProp = (prop) =>
     prop !== "currentSlide" && prop !== "slideCount";

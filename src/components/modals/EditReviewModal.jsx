@@ -1,17 +1,23 @@
 import { useState } from "react";
 import { WriteCard } from "./modalStyle";
 import { useMutation, useQueryClient } from "react-query";
-import { postReview } from "../../api/review";
-import { ReviewModalButton } from "./../Review/reviewStyle";
+import { putReview } from "../../api/review";
 import { ReactComponent as Close } from "../../assets/icons/close.svg";
+import { ReviewModalButton } from "../Review/reviewStyle";
 
-function WriteReviewModal({ title, movie_id, star, closeModal }) {
+function EditReviewModal({
+  title,
+  review_id,
+  star,
+  closeModal,
+  originalContent,
+}) {
   const [content, setContent] = useState("");
   const queryClient = useQueryClient();
-  const mutation = useMutation(postReview, {
+  const mutation = useMutation(putReview, {
     onSuccess: () => {
-      queryClient.invalidateQueries(`movie${movie_id}`);
-    }
+      queryClient.invalidateQueries(`review${review_id}`);
+    },
   });
 
   const onChangeHandler = (event) => {
@@ -19,7 +25,7 @@ function WriteReviewModal({ title, movie_id, star, closeModal }) {
   };
 
   const onSubmitHandler = () => {
-    mutation.mutate({ movie_id, content, star });
+    mutation.mutate({ reviewId: review_id, content, star });
     closeModal();
   };
 
@@ -32,11 +38,11 @@ function WriteReviewModal({ title, movie_id, star, closeModal }) {
         <h1>{title}</h1>
         <textarea
           type="text"
-          placeholder="영화에 대한 리뷰를 자유롭게 남겨주세요."
           className="textbox"
           cols="30"
           rows="20"
           value={content}
+          placeholder={originalContent}
           onChange={onChangeHandler}
         />
       </div>
@@ -51,4 +57,4 @@ function WriteReviewModal({ title, movie_id, star, closeModal }) {
   );
 }
 
-export default WriteReviewModal;
+export default EditReviewModal;

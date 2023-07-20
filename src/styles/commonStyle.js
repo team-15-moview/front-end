@@ -76,7 +76,32 @@ export const StyledLikeReply = styled.div`
   }
 
   & svg {
+    width: 15px;
     color: gray;
+  }
+
+  & .clickable {
+    cursor: pointer;
+  }
+`;
+
+export const StyledEditDelete = styled.div`
+  display: flex;
+  gap: 15px;
+
+  & div {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    font-size: 15px;
+  }
+
+  & svg {
+    color: gray;
+  }
+
+  & .clickable {
+    cursor: pointer;
   }
 `;
 

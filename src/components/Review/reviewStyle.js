@@ -3,7 +3,7 @@ import { LayoutMargin } from "../../styles/commonStyle";
 import { ModalWrapper, ModalButton } from "./../modals/modalStyle";
 
 export const MovieReviewContainer = styled(LayoutMargin)`
-  padding-top: 80px;
+  padding: 100px 0 80px 0;
   display: flex;
   flex-direction: column;
   gap: 20px;
@@ -12,6 +12,7 @@ export const MovieReviewContainer = styled(LayoutMargin)`
 export const ReviewRow = styled.div`
   display: flex;
   width: 100%;
+  height: 30vh;
   justify-content: space-between;
 
   & .cols:first-child {
@@ -33,8 +34,7 @@ export const ProfileSection = styled.div`
   gap: 10px;
 
   & svg {
-    width: 30px;
-    fill: gray;
+    width: 40px;
   }
 
   & figcaption {
@@ -64,29 +64,24 @@ export const ReviewContent = styled.div`
 
 export const MovieInfoSection = styled.div`
   display: flex;
+  justify-content: space-between;
   width: 100%;
-  gap: 10px;
 
   & figure {
-    flex: 1;
-    width: 100%;
-    height: 0;
-    padding-bottom: calc((9 / 16) * 100%);
     position: relative;
+    width: 160px;
+    cursor: pointer;
 
     & img {
       position: absolute;
       top: 0;
-      left: 0;
       width: 100%;
-      height: 100%;
-      object-fit: cover;
+      object-fit: contain;
     }
   }
 `;
 
 export const MovieDesc = styled.figcaption`
-  flex: 2;
   box-sizing: border-box;
   display: flex;
   flex-direction: column;
@@ -104,6 +99,8 @@ export const MovieDesc = styled.figcaption`
 `;
 
 export const LikeReplyRow = styled.div`
+  display: flex;
+  flex-flow: row wrap;
   margin: 10px 0;
   padding-left: 20px;
 `;
@@ -114,26 +111,27 @@ export const ReviewLikeReplyButtons = styled.div`
   justify-content: center;
   border-top: 1px solid var(--border-Color);
   border-bottom: 1px solid var(--border-Color);
-  padding: 10px 0;
+  padding: 5px 0;
   gap: 400px;
 
-  & button {
+  & > button {
     display: flex;
     align-items: center;
-    gap: 5px;
+    gap: 10px;
+    padding: 5px 40px;
     border: none;
     cursor: pointer;
-  }
+    background-color: white;
+    border-radius: 10px;
+    transition: 0.3s ease;
 
-  & svg {
-    opacity: 0.5;
-  }
-
-  & button:hover {
-    & > svg {
-      fill: var(--main-Color);
-      opacity: 1;
+    & svg {
+      width: 18px;
     }
+  }
+
+  & > button:hover {
+    background: var(--border-Color);
   }
 `;
 
@@ -179,10 +177,17 @@ export const ReviewModalWrapper = styled(ModalWrapper)`
 
 export const ReviewModalButton = styled(ModalButton)`
   position: absolute;
-  right: 10px;
-  bottom: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 18px;
+  right: 20px;
+  bottom: 20px;
   display: flex;
   justify-content: center;
   width: 100px;
   color: white;
+  text-align: center;
+  padding: 10px;
+  background: ${({ $bg }) => $bg};
 `;

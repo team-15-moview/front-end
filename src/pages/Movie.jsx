@@ -9,13 +9,15 @@ import { useState } from "react";
 
 function Movie() {
 
-  const { data, isLoading } = useQuery("movie", getMoviebyIdP(useMovieId()));
+  const { data, isLoading } = useQuery(`movie${useMovieId()}`, getMoviebyIdP(useMovieId()));
 
   if (isLoading) {
     return <></>
   }
   const movie = data.data;
   
+  console.log(movie)
+
   return (
     <>
       <StillBackground src={movie.still} />

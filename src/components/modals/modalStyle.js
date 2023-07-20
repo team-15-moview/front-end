@@ -17,15 +17,30 @@ export const ModalWrapper = styled.div`
     display: flex;
     flex-direction: column;
     align-items: center;
+    gap: 20px;
+
+    & h1 {
+      font-size: 20px;
+      font-weight: 700;
+    }
+
+    & svg {
+      width: 300px;
+    }
   }
 
   & .closeButton {
     position: absolute;
-    top: 10px;
-    right: 10px;
+    top: 20px;
+    right: 20px;
+    background: none;
+    border: none;
+    padding: 0;
+    cursor: pointer;
   }
 
   & .snsLoginButtons {
+    width: 300px;
     display: flex;
     flex-direction: column;
     gap: 10px;
@@ -39,71 +54,135 @@ export const ModalWrapper = styled.div`
       border: none;
       background: none;
       cursor: pointer;
+      padding: 5px;
+    }
+
+    & button:hover {
+      text-decoration: underline;
+      color: var(--main-Color);
+    }
+  }
+
+  & .ModalInputs {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    width: 300px;
+  }
+`;
+
+export const InLoginMadalButton = styled.button`
+  border: none;
+  background: none;
+  cursor: pointer;
+  padding: 5px;
+
+  &:hover {
+    text-decoration: underline;
+    color: var(--main-Color);
+  }
+`;
+
+export const ModalInputBox = styled.div`
+  width: 100%;
+  box-sizing: border-box;
+  display: flex;
+  gap: 10px;
+
+  & input {
+    width: 100%;
+    height: 40px;
+    padding-left: 10px;
+    border-radius: 10px;
+    background: none;
+    box-sizing: border-box;
+    border: 1px solid var(--border-Color);
+  }
+
+  & input:focus {
+    outline: 1px solid var(--main-Color);
+  }
+
+  & button {
+    width: 40%;
+    cursor: pointer;
+    border-radius: 10px;
+    border: none;
+    background: var(--border-Color);
+  }
+
+  & button:hover {
+    filter: brightness(90%);
+  }
+`;
+
+export const WriteCard = styled(ModalWrapper)`
+  width: 600px;
+  height: 500px;
+  box-sizing: border-box;
+
+  & div {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    box-sizing: border-box;
+    width: 100%;
+    height: 100%;
+    padding: 20px;
+
+    & h1 {
+      box-sizing: border-box;
+      width: 100%;
+      text-align: left;
+      font-size: 30px;
+      font-weight: 700;
+      padding: 10px;
+    }
+
+    & .textbox {
+      display: block;
+      box-sizing: border-box;
+      width: 100%;
+      border: none;
+      padding: 10px;
+      resize: none;
+      font-size: 18px;
+    }
+
+    & .textbox:focus {
+      outline: none;
+    }
+  }
+
+  & .closeButton {
+    position: absolute;
+    border: none;
+    background: none;
+    padding: 0;
+    top: 20px;
+    right: 20px;
+    cursor: pointer;
+
+    & svg {
+      width: 30px;
     }
   }
 `;
 
-export const WriteCard = styled.div`
-  width: 594px;
-  height: 687px;
-  box-shadow: 3px 3px 5px 5px grey;
-  border-radius: 20px;
-  background-color: white;
-  padding: 27px;
-  display: flex;
-  flex-flow: column wrap;
-  gap: 10px;
-
-  & .header{
-    display: flex;
-    justify-content: space-between;
-  }
-  & .title{
-    margin: 3px 9px;
-    text-align: center;
-    font-size: 32px;
-    font-weight: bold;
-  }
-  & .closeButton{
-    cursor: pointer;
-  }
-  & .textbox{
-    margin: 14px 9px;
-    flex-grow: 1;
-    border: none;
-    display: block;
-    font-size:20px;
-  }
-  & .submitContainer{
-    display: flex;
-    flex-flow: row-reverse wrap;
-    align-items: center;
-  }
-  & .submit{
-    cursor: pointer;
-    font-size: 24px;
-    font-weight: bold;
-    color: white;
-    text-align: center;
-    width: 188px;
-    height: 68px;
-    border: none;
-    border-radius: 10px;
-    background: rgb(101,40,247);
-
-  }
-
-`
-
 export const ModalButton = styled(StyledButton)`
   border-radius: 10px;
+  margin-top: 10px;
   width: 300px;
   height: 50px;
-  background: ${({ bg }) => bg};
+  color: ${({ $color }) => $color};
+  background: ${({ $bg }) => $bg};
   border: ${({ border }) => `1px solid ${border}`};
+
+  &:hover {
+    filter: brightness(90%);
+  }
 `;
 
 export const SubmitButton = styled.button`
-  
-  border: ${({ border }) => `1px solid ${border}`}
-`
+  border: ${({ border }) => `1px solid ${border}`};
+`;

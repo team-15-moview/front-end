@@ -34,12 +34,12 @@ export default function BannerSlider() {
     dots: false,
     nextArrow: (
       <RightIcon>
-        <Right />
+        <Right fill="var(--white-Color)" />
       </RightIcon>
     ),
     prevArrow: (
       <LeftIcon>
-        <Left />
+        <Left fill="var(--white-Color)" />
       </LeftIcon>
     ),
   };
