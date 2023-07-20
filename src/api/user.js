@@ -81,3 +81,11 @@ export const login = async ({ email, password }) => {
 export const logout = async () => {
   cookies.remove("accessToken");
 };
+
+export const emailCheck = async ({ email }) => {
+  return await ourAxios.post(`/api/users/check/email`, { email });
+};
+
+export const nicknameCheck = async ({ nickname }) => {
+  return await ourAxios.post(`/api/users/check/nickname`, { nickname });
+};

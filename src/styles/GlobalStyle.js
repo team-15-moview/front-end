@@ -7,10 +7,12 @@ const GlobalStyle = createGlobalStyle`
         --font-Color: #343A40;
         --white-Color: #ffffff;
 
+        min-height: 100vh;
         overflow-x: hidden;
         background: #fcfcfc;
         color: var(--font-Color);
     }
+
 
     .slick-prev::before,
     .slick-next::before {

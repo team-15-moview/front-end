@@ -8,6 +8,7 @@ export const StillContainer = styled.section`
   width: 100%;
   height: 80vh;
   overflow: hidden;
+  filter: brightness(60%);
 `;
 export const StillImg = styled.section`
   position: relative;
@@ -62,7 +63,7 @@ export const Heading = styled.h1`
   font-weight: bold;
 `;
 export const ReviewListContainer = styled.div`
-  margin: 25px auto;
+  margin: 40px auto;
   width: 1300px;
   display: grid;
   grid-template-columns: repeat(2, 1fr);
@@ -70,7 +71,6 @@ export const ReviewListContainer = styled.div`
 `;
 export const ReviewContainer = styled.div`
   width: 100%;
-  height: 104px;
   cursor: pointer;
 `;
 

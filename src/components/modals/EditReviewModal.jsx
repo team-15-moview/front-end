@@ -1,37 +1,60 @@
 import { useState } from "react";
-import { WriteCard } from "./modalStyle"
+import { WriteCard } from "./modalStyle";
 import { useMutation, useQueryClient } from "react-query";
 import { putReview } from "../../api/review";
+import { ReactComponent as Close } from "../../assets/icons/close.svg";
+import { ReviewModalButton } from "../Review/reviewStyle";
 
-function EditReviewModal({title, review_id, star, closeModal, originalContent}) {
-  const [content, setContent] = useState('');
+function EditReviewModal({
+  title,
+  review_id,
+  star,
+  closeModal,
+  originalContent,
+}) {
+  const [content, setContent] = useState("");
   const queryClient = useQueryClient();
-  const mutation = useMutation(putReview,{
-    onSuccess:()=>{
+  const mutation = useMutation(putReview, {
+    onSuccess: () => {
       queryClient.invalidateQueries(`review${review_id}`);
-    }
-  })
+    },
+  });
 
   const onChangeHandler = (event) => {
     setContent(event.target.value);
-  }
+  };
 
   const onSubmitHandler = () => {
-    mutation.mutate({reviewId:review_id,content,star});
+    mutation.mutate({ reviewId: review_id, content, star });
     closeModal();
-  }
+  };
+
   return (
     <WriteCard>
-      <div className="header">
-        <div className="title">{title}</div>
-        <div className="closeButton" onClick={closeModal}>X</div>
+      <button className="closeButton" onClick={closeModal}>
+        <Close fill="var(--font-Color)" />
+      </button>
+      <div>
+        <h1>{title}</h1>
+        <textarea
+          type="text"
+          className="textbox"
+          cols="30"
+          rows="20"
+          value={content}
+          placeholder={originalContent}
+          onChange={onChangeHandler}
+        />
       </div>
-      <textarea type="text" className="textbox edit" value={content} placeholder={originalContent} onChange={onChangeHandler}/>
-      <div className="submitContainer">
-        <button className="submit" onClick={onSubmitHandler}>제출</button>
-      </div>
+      <ReviewModalButton
+        className="submit"
+        onClick={onSubmitHandler}
+        $bg="var(--main-Color)"
+      >
+        제출
+      </ReviewModalButton>
     </WriteCard>
-  )
+  );
 }
 
-export default EditReviewModal
+export default EditReviewModal;

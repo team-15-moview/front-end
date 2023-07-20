@@ -1,14 +1,16 @@
 import React, { useState } from "react";
-import { ModalButton, ModalWrapper } from "./modalStyle";
+import { ModalButton, ModalInputBox, ModalWrapper } from "./modalStyle";
 import { useMutation } from "react-query";
 import { signUp } from "../../api/user";
+import { emailCheck, nicknameCheck } from "../../api/user";
+import { ReactComponent as Close } from "../../assets/icons/close.svg";
 import { ReactComponent as BlackLogo } from "../../assets/icons/logoBlack.svg";
 
 export default function EmailSigninModal({ closeSignin }) {
-  const mutation = useMutation(signUp, {})
+  const mutation = useMutation(signUp, {});
 
   const [email, setEmail] = useState("");
-  const [id, setId] = useState("");
+  const [nickname, setNickname] = useState("");
   const [password, setPassword] = useState("");
 
   const validateInput = () => {
@@ -22,10 +24,8 @@ export default function EmailSigninModal({ closeSignin }) {
       return;
     }
 
-    if (!idPattern.test(id)) {
-      alert(
-        "유효한 ID를 입력해주세요. (알파벳 소문자 또는 숫자로만 이루어지고, 4자 이상 10자 이하)"
-      );
+    if (!idPattern.test(nickname)) {
+      alert("유효한 닉네임을 입력해주세요. (소문자/한글/숫자 4~10자 이내)");
       return;
     }
 
@@ -39,7 +39,7 @@ export default function EmailSigninModal({ closeSignin }) {
     // 모든 입력값이 유효한 경우
     alert("모든 입력값이 유효합니다. 회원가입을 진행합니다.");
     // 추가적인 회원가입 처리 등을 진행할 수 있습니다.
-    mutation.mutate({ email, nickname: id, password })
+    mutation.mutate({ email, nickname: nickname, password });
   };
 
   const handleKeyDown = (e) => {
@@ -48,46 +48,73 @@ export default function EmailSigninModal({ closeSignin }) {
     }
   };
 
+  const checkEmailMutation = useMutation(emailCheck, {
+    onSuccess: (data) => {
+      alert(data.data.msg);
+    },
+  });
+
+  const checkEmailOverlap = () => {
+    checkEmailMutation.mutate({ email });
+  };
+
+  const checkNicknameMutation = useMutation(nicknameCheck, {
+    onSuccess: (data) => {
+      alert(data.data.msg);
+    },
+  });
+
+  const checkNicknameOverlap = () => {
+    checkNicknameMutation.mutate({ nickname });
+  };
+
   return (
     <ModalWrapper>
       <button className="closeButton" onClick={closeSignin}>
-        X
+        <Close fill="var(--font-Color)" />
       </button>
       <div className="modalHead">
         <BlackLogo className="logo" />
         <h1>이메일 회원가입</h1>
       </div>
-      <div className="EmailInputs">
-        <div className="EmailInputBox">
-          <p>Email</p>
+      <div className="ModalInputs">
+        <ModalInputBox className="EmailInputBox">
           <input
             type="text"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
             onKeyDown={handleKeyDown}
+            placeholder="이메일"
           />
-          <button>중복 확인</button>
-        </div>
-        <div className="EmailInputBox">
-          <p>ID</p>
+          <button onClick={checkEmailOverlap}>중복 확인</button>
+        </ModalInputBox>
+        <ModalInputBox className="EmailInputBox">
           <input
             type="text"
-            value={id}
-            onChange={(e) => setId(e.target.value)}
+            value={nickname}
+            onChange={(e) => setNickname(e.target.value)}
             onKeyDown={handleKeyDown}
+            placeholder="닉네임 (알파벳/소문자/숫자, 4~10자 이내)"
           />
-        </div>
-        <div className="EmailInputBox">
-          <p>PW</p>
+          <button onClick={checkNicknameOverlap}>중복 확인</button>
+        </ModalInputBox>
+        <ModalInputBox className="EmailInputBox">
           <input
             type="password"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
             onKeyDown={handleKeyDown}
+            placeholder="비밀번호 (대소문자/숫자/특수문자 포함 8~15자 이내)"
           />
-        </div>
+        </ModalInputBox>
+        <ModalButton
+          onClick={validateInput}
+          $bg="var(--main-Color)"
+          $color="var(--white-Color)"
+        >
+          회원가입
+        </ModalButton>
       </div>
-      <ModalButton onClick={validateInput}>회원가입</ModalButton>
     </ModalWrapper>
   );
 }

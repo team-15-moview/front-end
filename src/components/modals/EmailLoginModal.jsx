@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { ModalButton, ModalWrapper } from "./modalStyle";
+import { ModalButton, ModalInputBox, ModalWrapper } from "./modalStyle";
 import EmailSigninModal from "./EmailSigninModal";
 import { useMutation } from "react-query";
 import { login } from "../../api/user";
@@ -7,6 +7,7 @@ import { login } from "../../api/user";
 import { useDispatch } from "react-redux";
 import { setUserToken } from "../../redux/modules/userTokenSlice";
 
+import { ReactComponent as Close } from "../../assets/icons/close.svg";
 import { ReactComponent as BlackLogo } from "../../assets/icons/logoBlack.svg";
 
 export default function EmailLoginModal({ closeLogin }) {
@@ -46,7 +47,7 @@ export default function EmailLoginModal({ closeLogin }) {
   return (
     <ModalWrapper>
       <button className="closeButton" onClick={closeLogin}>
-        X
+        <Close fill="var(--font-Color)" />
       </button>
       {showSignup ? (
         <EmailSigninModal closeSignin={closeLogin} />
@@ -57,24 +58,32 @@ export default function EmailLoginModal({ closeLogin }) {
             <h1>이메일 로그인</h1>
           </div>
           <div className="ModalInputs">
-            <div className="ModalInputBox">
-              <p>Email</p>
+            <ModalInputBox className="ModalInputBox">
               <input
                 type="text"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
+                autoComplete="off"
+                placeholder="이메일을 입력하세요"
               />
-            </div>
-            <div className="ModalInputBox">
-              <p>PW</p>
+            </ModalInputBox>
+            <ModalInputBox className="ModalInputBox">
               <input
                 type="password"
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
+                autoComplete="off"
+                placeholder="비밀번호를 입력하세요"
               />
-            </div>
+            </ModalInputBox>
+            <ModalButton
+              onClick={handleLogin}
+              $bg="var(--main-Color)"
+              $color="var(--white-Color)"
+            >
+              로그인
+            </ModalButton>
           </div>
-          <ModalButton onClick={handleLogin}>로그인</ModalButton>
           <button onClick={handleSignupClick}>회원가입</button>
         </>
       )}
