@@ -9,15 +9,23 @@ import { ReactComponent as BlackLogo } from "../../assets/icons/logoBlack.svg";
 export default function EmailSigninModal({ closeSignin }) {
   const mutation = useMutation(signUp, {});
 
+  const [emailDuple, setEmailDuple] = useState(false);
+  const [nicknameDuple, setNicknameDuple] = useState(false);
+  const [emailDupleCheck, setEDC] = useState(false);
+  const [nicknameDupleCheck, setNDC] = useState(false);
   const [email, setEmail] = useState("");
   const [nickname, setNickname] = useState("");
   const [password, setPassword] = useState("");
+  const [checkedEmail, setCE] = useState("");
+  const [checkedNickname, setCN] = useState("");
+
+  const emailPattern = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+  const nicknamePattern = /^[a-z가-힣0-9]{4,10}$/;
+  const passwordPattern =
+    /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,15}$/;
 
   const validateInput = () => {
-    const emailPattern = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
-    const nicknamePattern = /^[a-z가-힣0-9]{4,10}$/;
-    const passwordPattern =
-      /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,15}$/;
+
 
     if (!emailPattern.test(email)) {
       alert("유효한 이메일을 입력해주세요.");
@@ -36,6 +44,21 @@ export default function EmailSigninModal({ closeSignin }) {
       return;
     }
 
+    if (emailDuple||nicknameDuple) {
+      alert(
+        '중복되는 이메일 또는 닉네임이 있습니다.'
+      )
+      return;
+    }
+    else if (!(emailDupleCheck && nicknameDupleCheck) || checkedEmail !== email || checkedNickname !== nickname) {
+      alert('이메일, 닉네임 중복확인을 해주세요.');
+      setEDC(false);
+      setNDC(false);
+      setCE('');
+      setCN('');
+      return;
+    }
+
     // 모든 입력값이 유효한 경우
     alert("모든 입력값이 유효합니다. 회원가입을 진행합니다.");
     // 추가적인 회원가입 처리 등을 진행할 수 있습니다.
@@ -51,8 +74,19 @@ export default function EmailSigninModal({ closeSignin }) {
 
   const checkEmailMutation = useMutation(emailCheck, {
     onSuccess: (data) => {
-      alert(data.data.message);
+      if (!emailPattern.test(email))
+        alert("유효한 이메일을 입력해주세요.");
+      else {
+        setEDC(true);
+        setCE(email);
+        setEmailDuple(false);
+        alert(data.data.message);
+      }
     },
+    onError: (data) => {
+      setEmailDuple(true);
+      alert(data?.response?.data?.message);
+    }
   });
 
   const checkEmailOverlap = () => {
@@ -61,8 +95,19 @@ export default function EmailSigninModal({ closeSignin }) {
 
   const checkNicknameMutation = useMutation(nicknameCheck, {
     onSuccess: (data) => {
-      alert(data.data.message);
+      if (!nicknamePattern.test(nickname))
+        alert("유효한 닉네임을 입력해주세요. (소문자/한글/숫자 4~10자 이내)");
+      else {
+        setNDC(true);
+        setCN(nickname);
+        setNicknameDuple(false);
+        alert(data.data.message);
+      }
     },
+    onError: (data) => {
+      setNicknameDuple(true);
+      alert(data?.response?.data?.message);
+    }
   });
 
   const checkNicknameOverlap = () => {
@@ -87,7 +132,12 @@ export default function EmailSigninModal({ closeSignin }) {
             onKeyDown={handleKeyDown}
             placeholder="이메일"
           />
-          <button onClick={checkEmailOverlap}>중복 확인</button>
+          {emailDupleCheck && email===checkedEmail?
+            <div>Checked</div>
+            :
+            <button onClick={checkEmailOverlap}>중복 확인</button>
+          }
+
         </ModalInputBox>
         <ModalInputBox className="EmailInputBox">
           <input
@@ -97,7 +147,11 @@ export default function EmailSigninModal({ closeSignin }) {
             onKeyDown={handleKeyDown}
             placeholder="닉네임 (알파벳/소문자/숫자, 4~10자 이내)"
           />
-          <button onClick={checkNicknameOverlap}>중복 확인</button>
+          {nicknameDupleCheck && nickname===checkedNickname ?
+            <div>Checked</div>
+            :
+            <button onClick={checkNicknameOverlap}>중복 확인</button>
+          }
         </ModalInputBox>
         <ModalInputBox className="EmailInputBox">
           <input
