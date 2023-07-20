@@ -40,6 +40,7 @@ export default function EmailSigninModal({ closeSignin }) {
     alert("모든 입력값이 유효합니다. 회원가입을 진행합니다.");
     // 추가적인 회원가입 처리 등을 진행할 수 있습니다.
     mutation.mutate({ email, nickname: nickname, password });
+    closeSignin();
   };
 
   const handleKeyDown = (e) => {
