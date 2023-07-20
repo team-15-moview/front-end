@@ -15,7 +15,7 @@ export default function EmailSigninModal({ closeSignin }) {
 
   const validateInput = () => {
     const emailPattern = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
-    const idPattern = /^[a-z0-9]{4,10}$/;
+    const idPattern = /^[가-힣0-9a-z]{2,10}$/;
     const passwordPattern =
       /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,15}$/;
 
@@ -25,7 +25,7 @@ export default function EmailSigninModal({ closeSignin }) {
     }
 
     if (!idPattern.test(nickname)) {
-      alert("유효한 닉네임을 입력해주세요. (소문자/한글/숫자 4~10자 이내)");
+      alert("유효한 닉네임을 입력해주세요. (소문자/한글/숫자 2~10자 이내)");
       return;
     }
 
@@ -40,6 +40,7 @@ export default function EmailSigninModal({ closeSignin }) {
     alert("모든 입력값이 유효합니다. 회원가입을 진행합니다.");
     // 추가적인 회원가입 처리 등을 진행할 수 있습니다.
     mutation.mutate({ email, nickname: nickname, password });
+    closeSignin();
   };
 
   const handleKeyDown = (e) => {
@@ -50,7 +51,7 @@ export default function EmailSigninModal({ closeSignin }) {
 
   const checkEmailMutation = useMutation(emailCheck, {
     onSuccess: (data) => {
-      alert(data.data.msg);
+      alert(data.data.message);
     },
   });
 
@@ -60,7 +61,7 @@ export default function EmailSigninModal({ closeSignin }) {
 
   const checkNicknameMutation = useMutation(nicknameCheck, {
     onSuccess: (data) => {
-      alert(data.data.msg);
+      alert(data.data.message);
     },
   });
 
