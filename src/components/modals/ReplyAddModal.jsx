@@ -1,7 +1,9 @@
 import React, { useState } from "react";
-import { ReviewModalButton, ReviewModalWrapper } from "../Review/reviewStyle";
+import { ReviewModalButton } from "../Review/reviewStyle";
 import { useMutation, useQueryClient } from "react-query";
 import { postComment } from "../../api/comment";
+import { WriteCard } from "./modalStyle";
+import { ReactComponent as Close } from "../../assets/icons/close.svg";
 
 export default function ReplyAddModal({ closeModal, review_id }) {
   const [content, setContent] = useState("");
@@ -23,25 +25,26 @@ export default function ReplyAddModal({ closeModal, review_id }) {
   };
 
   return (
-    <ReviewModalWrapper>
+    <WriteCard>
       <button className="closeButton" onClick={closeModal}>
-        X
+        <Close fill="var(--font-Color)" />
       </button>
       <div>
         <h1>댓글 작성</h1>
         <textarea
           name=""
           id=""
+          className="textbox"
           cols="30"
           rows="10"
-          placeholder="이 리뷰에 대한 생각을 자유롭게 남겨주세요."
           onChange={onChangeHandler}
           value={content}
+          placeholder="리뷰에 댓글을 작성해보세요!"
         />
       </div>
       <ReviewModalButton onClick={onSubmitHandler} $bg="var(--main-Color)">
         저장
       </ReviewModalButton>
-    </ReviewModalWrapper>
+    </WriteCard>
   );
 }

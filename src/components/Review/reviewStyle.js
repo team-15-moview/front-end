@@ -110,23 +110,27 @@ export const ReviewLikeReplyButtons = styled.div`
   justify-content: center;
   border-top: 1px solid var(--border-Color);
   border-bottom: 1px solid var(--border-Color);
-  padding: 10px 0;
+  padding: 5px 0;
   gap: 400px;
 
-  & button {
+  & > button {
     display: flex;
     align-items: center;
-    gap: 5px;
+    gap: 10px;
+    padding: 5px 40px;
     border: none;
     cursor: pointer;
     background-color: white;
+    border-radius: 10px;
+    transition: 0.3s ease;
+
+    & svg {
+      width: 18px;
+    }
   }
 
-  & button:hover {
-    & > svg {
-      fill: "var(--main-Color)";
-      opacity: 1;
-    }
+  & > button:hover {
+    background: var(--border-Color);
   }
 `;
 
@@ -172,12 +176,17 @@ export const ReviewModalWrapper = styled(ModalWrapper)`
 
 export const ReviewModalButton = styled(ModalButton)`
   position: absolute;
-  right: 10px;
-  bottom: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 18px;
+  right: 20px;
+  bottom: 20px;
   display: flex;
   justify-content: center;
   width: 100px;
   color: white;
   text-align: center;
+  padding: 10px;
   background: ${({ $bg }) => $bg};
 `;

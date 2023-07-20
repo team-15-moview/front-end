@@ -32,8 +32,8 @@ export const BannerCardFigure = styled.figure`
 
 export const BannerCardFicaption = styled.figcaption`
   position: absolute;
-  bottom: 70px;
-  left: 140px;
+  bottom: 50px;
+  left: 200px;
 
   & .movie_title {
     font-size: 50px;
@@ -94,15 +94,31 @@ export const MovieSliderItem = styled.div`
   display: flex;
   flex-direction: column;
 
-  & img {
-    /* width: 220px; */
+  & figure {
+    width: 220px;
+    height: 308px;
+    overflow: hidden;
+
+    & img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
   }
 
   & figcaption {
-    padding: 10px 0;
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+    padding-top: 15px;
 
     & p {
       margin: 5px 0;
+    }
+
+    & p:first-child {
+      font-size: 17px;
+      font-weight: 700;
     }
   }
 `;
@@ -110,8 +126,8 @@ export const MovieSliderItem = styled.div`
 export const BannerReviewBox = styled.div`
   position: absolute;
   width: 400px;
-  bottom: 40px;
-  right: 80px;
+  bottom: 50px;
+  right: 150px;
   display: flex;
   flex-direction: column;
   justify-content: center;
