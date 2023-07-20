@@ -15,7 +15,7 @@ export default function EmailSigninModal({ closeSignin }) {
 
   const validateInput = () => {
     const emailPattern = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
-    const idPattern = /^[가-힣0-9a-z]{2,10}$/;
+    const nicknamePattern = /^[a-z가-힣0-9]{4,10}$/;
     const passwordPattern =
       /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,15}$/;
 
@@ -24,8 +24,8 @@ export default function EmailSigninModal({ closeSignin }) {
       return;
     }
 
-    if (!idPattern.test(nickname)) {
-      alert("유효한 닉네임을 입력해주세요. (소문자/한글/숫자 2~10자 이내)");
+    if (!nicknamePattern.test(nickname)) {
+      alert("유효한 닉네임을 입력해주세요. (소문자/한글/숫자 4~10자 이내)");
       return;
     }
 
