@@ -106,11 +106,15 @@ function Header() {
                 </Modal>
               )}
               {isLogin ? (
-                <User fill="gray" />
+                <User fill="var(--font-Color)" />
               ) : (
                 <HeaderButton
                   onClick={openSigninModal}
                   ref={openerSigninModalRef}
+                  style={{
+                    color: "var(--white-Color)",
+                    background: "var(--main-Color)",
+                  }}
                 >
                   회원가입
                 </HeaderButton>
@@ -155,14 +159,14 @@ function Header() {
                 </Modal>
               )}
               {isLogin ? (
-                <User fill="gray" />
+                <User fill="var(--font-Color)" />
               ) : (
                 <HeaderButton
                   onClick={openSigninModal}
                   ref={openerSigninModalRef}
                   isScrolled={isScrolled}
-                  bgColor
-                  border
+                  $bgColor
+                  $border
                 >
                   회원가입
                 </HeaderButton>

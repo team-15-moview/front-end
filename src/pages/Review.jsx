@@ -25,24 +25,29 @@ import ReviewAddModal from "../components/modals/ReplyAddModal";
 import Comments from "../components/Review/Comments";
 import { deleteLike, postLike } from "../api/like";
 import { useEffect } from "react";
+import { useSelector } from "react-redux";
 
 export default function Review() {
+  const isLogin = useSelector((state) => {
+    return state.userToken.hasToken;
+  });
+
   const review_id = useReviewId();
   const queryClient = useQueryClient();
-  useEffect(()=>{
+  useEffect(() => {
     queryClient.invalidateQueries(`review${review_id}`);
     queryClient.invalidateQueries(`comments${review_id}`);
-  },[review_id,queryClient])
+  }, [review_id, queryClient]);
 
-  const likePostMutation = useMutation(postLike,{
-    onSuccess: ()=>{
+  const likePostMutation = useMutation(postLike, {
+    onSuccess: () => {
       queryClient.invalidateQueries(`review${review_id}`);
-    }
+    },
   });
-  const likeDeleteMutation = useMutation(deleteLike,{
-    onSuccess: ()=>{
+  const likeDeleteMutation = useMutation(deleteLike, {
+    onSuccess: () => {
       queryClient.invalidateQueries(`review${review_id}`);
-    }
+    },
   });
 
   const [Modal, openModal, closeModal, openerRef] = useModal();
@@ -66,7 +71,7 @@ export default function Review() {
   const { data, isLoading, isError, error } = useQuery(
     `review${review_id}`,
     getReviewByIdP(review_id),
-    {initialData:{data:defaultReview}}
+    { initialData: { data: defaultReview } }
   );
 
   if (isLoading) {
@@ -82,13 +87,23 @@ export default function Review() {
     console.log(error.message);
   }
 
-  
-  const likeOnClick = () =>{
-    review.like_by_user?
-    likeDeleteMutation.mutate({review_id})
-    :
-    likePostMutation.mutate({review_id})
-  }
+  const likeOnClick = () => {
+    if (isLogin) {
+      review.like_by_user
+        ? likeDeleteMutation.mutate({ review_id })
+        : likePostMutation.mutate({ review_id });
+    } else {
+      alert("로그인이 필요합니다!");
+    }
+  };
+
+  const replyOnClick = () => {
+    if (isLogin) openModal();
+    else {
+      alert("로그인이 필요합니다!");
+      return undefined;
+    }
+  };
 
   return (
     <>
@@ -118,23 +133,26 @@ export default function Review() {
           </div>
         </styled.ReviewRow>
         <styled.LikeReplyRow>
-          <LikeReply {...review}/>
-
+          <LikeReply {...review} />
         </styled.LikeReplyRow>
         <styled.ReviewLikeReplyButtons>
           <button onClick={likeOnClick}>
-            <Like fill={review.like_by_user? 'var(--main-Color)' : 'grey'}/> 좋아요
+            <Like fill={review.like_by_user ? "var(--main-Color)" : "grey"} />
+            좋아요
           </button>
-          <button onClick={openModal} ref={openerRef}>
+          <button onClick={replyOnClick} ref={openerRef}>
             <Reply /> 댓글
           </button>
           {Modal && (
             <Modal>
-              <ReviewAddModal closeModal={closeModal} review_id={review.review_id}/>
+              <ReviewAddModal
+                closeModal={closeModal}
+                review_id={review.review_id}
+              />
             </Modal>
           )}
         </styled.ReviewLikeReplyButtons>
-        <Comments review_id={review.review_id}/>
+        <Comments review_id={review.review_id} />
       </styled.MovieReviewContainer>
     </>
   );

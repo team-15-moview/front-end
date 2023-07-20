@@ -5,14 +5,18 @@ import {
   ReviewBoxRow,
   UserProfile,
   UserReview,
+  StyledLikeReply,
 } from "../../styles/commonStyle";
-import LikeReply from "./LikeReply";
+import { ReactComponent as Like } from "../../assets/icons/like.svg";
+import { ReactComponent as Reply } from "../../assets/icons/reply.svg";
+
 import { useNavigate } from "react-router-dom";
 
 export default function ReviewBox({ review }) {
+  console.log(review);
   const navigate = useNavigate();
   return (
-    <StyledReviewBox onClick={()=>navigate(`/reviews/${review.review_id}`)}>
+    <StyledReviewBox onClick={() => navigate(`/reviews/${review.review_id}`)}>
       <ReviewBoxRow>
         <UserProfile>
           <figure>
@@ -25,10 +29,15 @@ export default function ReviewBox({ review }) {
       <ReviewBoxRow>
         <UserReview>
           <p>{review.content}</p>
-          <LikeReply
-            likes={review.likes_count}
-            comments={review.comments_count}
-          />
+          <StyledLikeReply>
+            <div>
+              <Like fill="gray" />
+              {review.likes_count}
+            </div>
+            <div>
+              <Reply /> {review.comments_count}
+            </div>
+          </StyledLikeReply>
         </UserReview>
       </ReviewBoxRow>
     </StyledReviewBox>

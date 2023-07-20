@@ -76,10 +76,11 @@ export const StyledLikeReply = styled.div`
   }
 
   & svg {
+    width: 15px;
     color: gray;
   }
 
-  & .clickable{
+  & .clickable {
     cursor: pointer;
   }
 `;
@@ -99,10 +100,10 @@ export const StyledEditDelete = styled.div`
     color: gray;
   }
 
-  & .clickable{
+  & .clickable {
     cursor: pointer;
   }
-`
+`;
 
 export const StyledButton = styled.button`
   border-radius: 5px;
