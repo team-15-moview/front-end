@@ -70,6 +70,7 @@ export const MovieInfoSection = styled.div`
   & figure {
     position: relative;
     width: 160px;
+    cursor: pointer;
 
     & img {
       position: absolute;

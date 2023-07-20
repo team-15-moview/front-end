@@ -1,5 +1,4 @@
 import React from "react";
-import Star from "./Star";
 import {
   StyledReviewBox,
   ReviewBoxRow,
