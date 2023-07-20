@@ -74,7 +74,7 @@ export default function EmailSigninModal({ closeSignin }) {
         <Close fill="var(--font-Color)" />
       </button>
       <div className="modalHead">
-        <BlackLogo />
+        <BlackLogo className="logo" />
         <h1>이메일 회원가입</h1>
       </div>
       <div className="ModalInputs">

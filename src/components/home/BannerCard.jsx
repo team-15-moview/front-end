@@ -30,6 +30,7 @@ export default function BannerCard({ movie, ranking }) {
           src={movie.still}
           alt="스틸컷"
           onClick={() => navigate(`/movies/${movie.movie_id}`)}
+          loading="lazy"
         />
         <BannerCardFicaption ref={ref} style={animationStyles}>
           <p className="movie_title">{movie.title}</p>

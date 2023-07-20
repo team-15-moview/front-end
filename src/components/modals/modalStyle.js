@@ -18,15 +18,18 @@ export const ModalWrapper = styled.div`
     flex-direction: column;
     align-items: center;
     gap: 20px;
-
     & h1 {
       font-size: 20px;
       font-weight: 700;
     }
-
     & svg {
       width: 300px;
     }
+    justify-content: center;
+  }
+  
+  & .logo {
+    width: 150px;
   }
 
   & .closeButton {

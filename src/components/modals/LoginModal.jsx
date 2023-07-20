@@ -40,7 +40,7 @@ export default function LoginModal({ closeLogin }) {
             <Close fill="var(--font-Color)" />
           </button>
           <div className="modalHead">
-            <BlackLogo />
+            <BlackLogo className="logo" />
             <h1>로그인</h1>
           </div>
           <div className="snsLoginButtons">

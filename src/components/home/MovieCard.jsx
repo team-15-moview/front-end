@@ -8,11 +8,7 @@ export default function MovieCard({ movie }) {
   return (
     <MovieSliderItem>
       <figure>
-        <img
-          src={movie.thumbnail}
-          alt="포스터"
-          onClick={() => navigate(`/movies/${movie.movie_id}`)}
-        />
+        <img src={movie.thumbnail} alt="포스터" onClick={()=>navigate(`/movies/${movie.movie_id}`)} loading="lazy"/>
       </figure>
       <figcaption>
         <p className="movieTitle">{movie.title}</p>

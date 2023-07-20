@@ -28,8 +28,8 @@ export default function EmailLoginModal({ closeLogin }) {
 
   const handleLogin = () => {
     // Perform login logic using the email and password values
-    console.log("Email:", email);
-    console.log("Password:", password);
+    // console.log("Email:", email);
+    // console.log("Password:", password);
 
     // mutate로 로그인 요청 보내기
     mutation.mutate({ email, password });
@@ -50,11 +50,11 @@ export default function EmailLoginModal({ closeLogin }) {
         <Close fill="var(--font-Color)" />
       </button>
       {showSignup ? (
-        <EmailSigninModal closeLogin={closeLogin} />
+        <EmailSigninModal closeSignin={closeLogin} />
       ) : (
         <>
           <div className="modalHead">
-            <BlackLogo />
+            <BlackLogo className="logo"/>
             <h1>이메일 로그인</h1>
           </div>
           <div className="ModalInputs">

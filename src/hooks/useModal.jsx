@@ -61,6 +61,7 @@ const useModal = (coverExist = true, exitByOuterClick = true) => {
     openModal,
     closeModal,
     openerRef,
+    isOpen
   ];
 };
 
