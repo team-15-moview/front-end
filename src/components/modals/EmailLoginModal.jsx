@@ -27,8 +27,8 @@ export default function EmailLoginModal({ closeLogin }) {
 
   const handleLogin = () => {
     // Perform login logic using the email and password values
-    console.log("Email:", email);
-    console.log("Password:", password);
+    // console.log("Email:", email);
+    // console.log("Password:", password);
 
     // mutate로 로그인 요청 보내기
     mutation.mutate({ email, password });

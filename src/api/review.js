@@ -19,6 +19,8 @@ export const getReviewsP = (movieId,lastReviewId) => async () => {
 }
 
 export const getReviewByIdP = (reviewId) => async () => {
+  if(!reviewId)
+    return null;
   const response = await getWithToken(`api/reviews/${reviewId}`);
   return response;
 }

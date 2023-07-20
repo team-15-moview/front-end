@@ -13,7 +13,6 @@ import { ReactComponent as Reply } from "../../assets/icons/reply.svg";
 import { useNavigate } from "react-router-dom";
 
 export default function ReviewBox({ review }) {
-  console.log(review);
   const navigate = useNavigate();
   return (
     <StyledReviewBox onClick={() => navigate(`/reviews/${review.review_id}`)}>

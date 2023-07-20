@@ -105,6 +105,8 @@ export default function Review() {
     }
   };
 
+  console.log(review)
+
   return (
     <>
       <styled.MovieReviewContainer>

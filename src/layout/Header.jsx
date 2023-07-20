@@ -53,7 +53,7 @@ function Header() {
     try {
       await logout();
       dispatch(clearUserToken());
-      window.location.reload(); // 새로고침
+      closeModal(); // 새로고침
       alert("로그아웃되었습니다.");
     } catch (error) {
       console.error("로그아웃 에러:", error);

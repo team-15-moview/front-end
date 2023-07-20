@@ -12,7 +12,6 @@ import { useSelector } from "react-redux";
 
 function Comments({ review_id }) {
   const nickname = useSelector((state) => state.userToken.nickname);
-  console.log(nickname);
   const queryClient = useQueryClient();
   const { data, isLoading } = useQuery(`comments${review_id}`, getCommentsP(review_id, -1));
   const deleteMutation = useMutation(deleteComment, {

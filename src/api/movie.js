@@ -8,7 +8,6 @@ export const getAllMovies = async () => {
 
 export const getTopFiveMovies = async () => {
   const response = await ourAxios.get('api/movies/top5');
-  console.log(response);
   return response;
 }
 
