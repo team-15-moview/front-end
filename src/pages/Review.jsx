@@ -26,8 +26,10 @@ import Comments from "../components/Review/Comments";
 import { deleteLike, postLike } from "../api/like";
 import { useEffect } from "react";
 import { useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
 
 export default function Review() {
+  const navigate = useNavigate();
   const isLogin = useSelector((state) => {
     return state.userToken.hasToken;
   });
@@ -128,7 +130,7 @@ export default function Review() {
                 <p>{reviewedmovie.open_date}</p>
                 <p>{reviewedmovie.director}</p>
               </styled.MovieDesc>
-              <figure>
+              <figure onClick={()=>navigate(`/movies/${reviewedmovie.movie_id}`)}>
                 <img src={reviewedmovie.thumbnail} alt="포스터" />
               </figure>
             </styled.MovieInfoSection>

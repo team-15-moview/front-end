@@ -1,8 +1,6 @@
 import React from "react";
 import { StyledLikeReply } from "../../styles/commonStyle";
 
-import { ReactComponent as Like } from "../../assets/icons/like.svg";
-import { ReactComponent as Reply } from "../../assets/icons/reply.svg";
 import { ReactComponent as Edit } from "../../assets/icons/edit.svg";
 import { ReactComponent as Delete } from "../../assets/icons/delete.svg";
 import { useMutation, useQueryClient } from "react-query";
@@ -28,7 +26,7 @@ export default function LikeReply({
   const ReviewDeleteMutation = useMutation(deleteReview, {
     onSuccess: () => {
       queryClient.invalidateQueries(`review${review_id}`);
-      queryClient.invalidateQueries(`reviews${movie.movie_id}`);
+      queryClient.invalidateQueries(`reviewList${movie.movie_id}`);
       queryClient.invalidateQueries(`top5Movies`);
     }
   })
