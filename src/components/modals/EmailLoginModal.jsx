@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { ModalButton, ModalInputBox, ModalWrapper } from "./modalStyle";
+import { InLoginMadalButton, ModalButton, ModalInputBox, ModalWrapper } from "./modalStyle";
 import EmailSigninModal from "./EmailSigninModal";
 import { useMutation } from "react-query";
 import { login } from "../../api/user";
@@ -84,7 +84,7 @@ export default function EmailLoginModal({ closeLogin }) {
               로그인
             </ModalButton>
           </div>
-          <button onClick={handleSignupClick}>회원가입</button>
+          <InLoginMadalButton onClick={handleSignupClick}>회원가입</InLoginMadalButton>
         </>
       )}
     </ModalWrapper>

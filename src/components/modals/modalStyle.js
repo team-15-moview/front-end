@@ -18,18 +18,15 @@ export const ModalWrapper = styled.div`
     flex-direction: column;
     align-items: center;
     gap: 20px;
+
     & h1 {
       font-size: 20px;
       font-weight: 700;
     }
+
     & svg {
       width: 300px;
     }
-    justify-content: center;
-  }
-  
-  & .logo {
-    width: 150px;
   }
 
   & .closeButton {
@@ -72,15 +69,15 @@ export const ModalWrapper = styled.div`
     gap: 10px;
     width: 300px;
   }
+`;
 
-  & > button {
-    border: none;
-    background: none;
-    cursor: pointer;
-    padding: 5px;
-  }
+export const InLoginMadalButton = styled.button`
+  border: none;
+  background: none;
+  cursor: pointer;
+  padding: 5px;
 
-  & > button:hover {
+  &:hover {
     text-decoration: underline;
     color: var(--main-Color);
   }
