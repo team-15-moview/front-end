@@ -28,6 +28,7 @@ export default function LikeReply({
       queryClient.invalidateQueries(`review${review_id}`);
       queryClient.invalidateQueries(`reviewList${movie.movie_id}`);
       queryClient.invalidateQueries(`top5Movies`);
+      queryClient.invalidateQueries(`movie${movie.movie_id}`)
     }
   })
 
@@ -58,6 +59,7 @@ export default function LikeReply({
               title={movie.title}
               {...{ review_id, closeModal, star }}
               originalContent={content}
+              movie_id={movie.movie_id}
             />
           </Modal>
         </>

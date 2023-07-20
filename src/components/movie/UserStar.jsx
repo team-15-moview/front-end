@@ -92,7 +92,8 @@ function UserStar({ max, userStar, title, movie_id, review_id }) {
                 review_id,
                 star,
                 closeModal,
-                originalContent
+                originalContent,
+                movie_id
               }} 
             />
             :

@@ -11,12 +11,15 @@ function EditReviewModal({
   star,
   closeModal,
   originalContent,
+  movie_id
 }) {
   const [content, setContent] = useState("");
   const queryClient = useQueryClient();
   const mutation = useMutation(putReview, {
     onSuccess: () => {
       queryClient.invalidateQueries(`review${review_id}`);
+      queryClient.invalidateQueries(`reviewList${movie_id}`);
+      queryClient.invalidateQueries(`movie${movie_id}`);
     },
   });
 
